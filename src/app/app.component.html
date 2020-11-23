@@ -1,1 +1,12 @@
 <app-header></app-header>
+
+<nav>
+  <a routerLink="/post-create-path" routerLinkActive="active">
+    <button mat-button color="primary">AS OWNER</button>
+  </a>
+  <a routerLink="/post-list-path" routerLinkActive="active">
+    <button mat-button color="warn">AS RENTER</button>
+  </a>
+</nav>
+
+<router-outlet></router-outlet>
