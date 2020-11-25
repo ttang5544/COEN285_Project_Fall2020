@@ -21,6 +21,10 @@ import { PostCreateComponent } from './posts/post-create/post-create.component';
 import { PostListComponent } from './posts/post-list/post-list.component';
 
 import { AppRoutingModule, routingComponents} from './app-routing.module';
+import { WelcomeComponent } from './welcome/welcome.component';
+import { SigninComponent } from './signin/signin.component';
+import { SignupComponent } from './signup/signup.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 @NgModule({
@@ -29,7 +33,11 @@ import { AppRoutingModule, routingComponents} from './app-routing.module';
     HeaderComponent,
     PostCreateComponent,
     PostListComponent,
-    routingComponents
+    routingComponents,
+    WelcomeComponent,
+    SigninComponent,
+    SignupComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
