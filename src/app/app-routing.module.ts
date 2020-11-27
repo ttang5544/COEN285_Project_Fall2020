@@ -20,4 +20,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [PostCreateComponent, PostListComponent ];
+export const routingComponents = [PostCreateComponent, PostListComponent, CardGridComponent, ItemFormComponent];
