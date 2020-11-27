@@ -10,6 +10,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
 import {MatExpansionModule} from '@angular/material/expansion';
 
+import {MatGridListModule} from '@angular/material/grid-list';
+
 
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
@@ -21,6 +23,12 @@ import { PostCreateComponent } from './posts/post-create/post-create.component';
 import { PostListComponent } from './posts/post-list/post-list.component';
 
 import { AppRoutingModule, routingComponents} from './app-routing.module';
+import { CardGridComponent } from './card-grid/card-grid.component';
+
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { ItemFormComponent } from './item-form/item-form.component';
+
+import {MatInputModule} from '@angular/material/input';
 
 
 @NgModule({
@@ -29,7 +37,9 @@ import { AppRoutingModule, routingComponents} from './app-routing.module';
     HeaderComponent,
     PostCreateComponent,
     PostListComponent,
-    routingComponents
+    routingComponents,
+    CardGridComponent,
+    ItemFormComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +51,9 @@ import { AppRoutingModule, routingComponents} from './app-routing.module';
     MatFormFieldModule,
     MatButtonModule,
     MatExpansionModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FlexLayoutModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
