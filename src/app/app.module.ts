@@ -28,7 +28,14 @@ import { CardGridComponent } from './card-grid/card-grid.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ItemFormComponent } from './item-form/item-form.component';
 
-import {MatInputModule} from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+//import { MatFileUploadModule } from 'angular-material-fileupload';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { MatIconModule } from '@angular/material/icon';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+
+
 
 
 @NgModule({
@@ -49,8 +56,16 @@ import {MatInputModule} from '@angular/material/input';
     MatToolbarModule,
     MatCardModule,
     MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
     MatButtonModule,
+    MatGridListModule,
+    MatInputModule,
+    MatSelectModule,
     MatExpansionModule,
+    MatProgressBarModule,
+    MatIconModule,
+    MatDatepickerModule,
     AppRoutingModule,
     FlexLayoutModule,
     MatInputModule
