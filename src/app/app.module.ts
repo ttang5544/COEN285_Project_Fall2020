@@ -9,6 +9,8 @@ import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatSelectModule} from '@angular/material/select';
+
 
 import {MatGridListModule} from '@angular/material/grid-list';
 
@@ -23,7 +25,6 @@ import { PostCreateComponent } from './posts/post-create/post-create.component';
 import { PostListComponent } from './posts/post-list/post-list.component';
 
 import { AppRoutingModule, routingComponents} from './app-routing.module';
-import { CardGridComponent } from './card-grid/card-grid.component';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ItemFormComponent } from './item-form/item-form.component';
@@ -38,7 +39,6 @@ import {MatInputModule} from '@angular/material/input';
     PostCreateComponent,
     PostListComponent,
     routingComponents,
-    CardGridComponent,
     ItemFormComponent
   ],
   imports: [
@@ -53,7 +53,8 @@ import {MatInputModule} from '@angular/material/input';
     MatExpansionModule,
     AppRoutingModule,
     FlexLayoutModule,
-    MatInputModule
+    MatInputModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]
