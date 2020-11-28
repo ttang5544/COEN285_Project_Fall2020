@@ -10,8 +10,8 @@ export class PostsService{
     return this.posts;
   }
 
-  addPost(title: string, content: string) {
-    const post: Post = {title: title, content: content};
+  addPost(title: string, content: string, url: string, cate: string) {
+    const post: Post = {title: title, content: content, imgurl: url, cate:cate};
     this.posts.push(post);
 
   }
