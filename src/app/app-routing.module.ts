@@ -6,10 +6,13 @@ import { PostListComponent } from './posts/post-list/post-list.component';
 
 import { ItemFormComponent } from './item-form/item-form.component';
 
+import { MessagepageComponent } from './messagepage/messagepage.component';
+
 const routes: Routes = [
   { path: 'post-create-path', component: PostCreateComponent  },
   { path: 'post-list-path', component: PostListComponent },
-  { path: 'item-form-component', component: ItemFormComponent }
+  { path: 'item-form-component', component: ItemFormComponent },
+  { path: 'app-messagepage-component', component: MessagepageComponent }
 ];
 
 @NgModule({

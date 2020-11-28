@@ -10,6 +10,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatSelectModule} from '@angular/material/select';
+import {MatIconModule} from '@angular/material/icon';
 
 
 import {MatGridListModule} from '@angular/material/grid-list';
@@ -30,7 +31,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ItemFormComponent } from './item-form/item-form.component';
 
 import {MatInputModule} from '@angular/material/input';
-
+import { MessageComponent } from './message/message.component';
+import { MessagepageComponent } from './messagepage/messagepage.component';
+import {MatBadgeModule} from '@angular/material/badge';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,9 @@ import {MatInputModule} from '@angular/material/input';
     PostCreateComponent,
     PostListComponent,
     routingComponents,
-    ItemFormComponent
+    ItemFormComponent,
+    MessageComponent,
+    MessagepageComponent
   ],
   imports: [
     BrowserModule,
@@ -49,12 +54,14 @@ import {MatInputModule} from '@angular/material/input';
     MatToolbarModule,
     MatCardModule,
     MatFormFieldModule,
+    MatBadgeModule,
     MatButtonModule,
     MatExpansionModule,
     AppRoutingModule,
     FlexLayoutModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
