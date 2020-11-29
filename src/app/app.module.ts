@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AngularFireModule } from '@angular/fire';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {MatToolbarModule } from '@angular/material/toolbar';
 import {MatCardModule} from '@angular/material/card';
@@ -34,6 +34,10 @@ import {MatInputModule} from '@angular/material/input';
 import { MessageComponent } from './message/message.component';
 import { MessagepageComponent } from './messagepage/messagepage.component';
 import {MatBadgeModule} from '@angular/material/badge';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { WelcomeComponent } from './welcome/welcome.component';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -44,11 +48,16 @@ import {MatBadgeModule} from '@angular/material/badge';
     routingComponents,
     ItemFormComponent,
     MessageComponent,
-    MessagepageComponent
+    MessagepageComponent,
+    DashboardComponent,
+    WelcomeComponent,
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
     MatToolbarModule,
