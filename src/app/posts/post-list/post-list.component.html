@@ -1,20 +1,32 @@
 <div fxLayout="row wrap" fxLayoutGap="16px grid">
-  <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%"  *ngFor="let post of posts" >
+  <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let post of posts; let i=index;">
+
+
     <mat-card class="example-card">
       <mat-card-header>
         <mat-card-title>{{post.title}}</mat-card-title>
         <mat-card-subtitle>{{post.cate}}</mat-card-subtitle>
       </mat-card-header>
-      <img mat-card-image src= {{post.imgurl}}>
+      <img mat-card-image src={{post.imgurl}}>
+      <div *ngIf="!post.imgurl">
+        <h1>no picture</h1>
+      </div>
       <mat-card-content>
         <p>{{post.content}}</p>
       </mat-card-content>
+      <hr>
+      <label>Rental Start date:</label>
+      <br>
+      <input type="date" id="start">
+      <br>
+      <label>Rental End date:</label>
+      <br>
+      <input type="date" id="end">
+      <br>
       <mat-card-actions>
-        <button mat-button>REQUEST TO RENT</button>
+        <button mat-button (click)="openDialog(i)">REQUEST TO RENT</button>
       </mat-card-actions>
     </mat-card>
+
   </div>
 </div>
-
-
-
