@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { PostCreateComponent } from './posts/post-create/post-create.component';
 import { PostListComponent } from './posts/post-list/post-list.component';
+import { ItemFormComponent } from './item-form/item-form.component';
 
 import { WelcomeComponent } from './welcome/welcome.component';
 
@@ -13,17 +14,40 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'home', pathMatch: 'full'},
-  {path: 'home', component: AppComponent, children: [
-    {path: '', redirectTo: 'login', pathMatch: 'full'},
-    {path: 'login', component: WelcomeComponent}
-  ]},
-  {path: 'dashboard', component: DashboardComponent, children: [
-    { path: 'post-create-path', component: PostCreateComponent },
-    { path: 'post-list-path', component: PostListComponent }
-  ]},
-  { path: 'signin-path', component:SigninComponent },
-  { path: 'signup-path', component:SignupComponent }
+  {
+    path: '', redirectTo: 'home', pathMatch: 'full'
+  },
+  {
+    path: 'home', component: AppComponent,
+    children: [
+      {
+        path: '', redirectTo: 'login', pathMatch: 'full'
+      },
+      {
+        path: 'login', component: WelcomeComponent
+      }
+    ]
+  },
+  {
+    path: 'dashboard', component: DashboardComponent,
+    children: [
+      {
+        path: 'post-create-path', component: PostCreateComponent
+      },
+      {
+        path: 'post-list-path', component: PostListComponent
+      },
+      {
+        path: 'item-form-component', component: ItemFormComponent
+      }
+    ]
+  },
+  {
+    path: 'signin-path', component:SigninComponent
+  },
+  {
+    path: 'signup-path', component:SignupComponent
+  }
 ];
 
 @NgModule({
@@ -31,4 +55,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [PostCreateComponent, PostListComponent ];
+export const routingComponents = [PostCreateComponent, PostListComponent, ItemFormComponent];
