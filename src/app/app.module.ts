@@ -1,39 +1,38 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
-import { AngularFireModule } from '@angular/fire';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-
-import {MatToolbarModule } from '@angular/material/toolbar';
-import {MatCardModule} from '@angular/material/card';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatButtonModule} from '@angular/material/button';
-import {MatExpansionModule} from '@angular/material/expansion';
-
-import {MatGridListModule} from '@angular/material/grid-list';
-
+import { NgModule } from '@angular/core';
+import { AngularFireModule } from '@angular/fire';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatInputModule } from '@angular/material/input';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { environment } from '../environments/environment';
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppRoutingModule, routingComponents} from './app-routing.module';
 
+import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';    // the header cmpnt
 
 import { PostCreateComponent } from './posts/post-create/post-create.component';
 import { PostListComponent } from './posts/post-list/post-list.component';
-
-import { AppRoutingModule, routingComponents} from './app-routing.module';
-import { CardGridComponent } from './card-grid/card-grid.component';
-
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { ItemFormComponent } from './item-form/item-form.component';
 
-import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
+
 //import { MatFileUploadModule } from 'angular-material-fileupload';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { MatIconModule } from '@angular/material/icon';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+
+import { WelcomeComponent } from './welcome/welcome.component';
+import { SigninComponent } from './signin/signin.component';
+import { SignupComponent } from './signup/signup.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 
@@ -45,8 +44,11 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     PostCreateComponent,
     PostListComponent,
     routingComponents,
-    CardGridComponent,
-    ItemFormComponent
+    WelcomeComponent,
+    SigninComponent,
+    SignupComponent,
+    DashboardComponent
+    ItemFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,7 +70,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     MatDatepickerModule,
     AppRoutingModule,
     FlexLayoutModule,
-    MatInputModule
+    MatInputModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]
