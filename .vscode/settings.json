@@ -1,0 +1,10 @@
+{
+  "search.showLineNumbers": true,
+  "debug.inlineValues": true,
+  "debug.showBreakpointsInOverviewRuler": true,
+  "scm.alwaysShowActions": true,
+  "editor.tabSize": 2,
+  "editor.wordWrap": "bounded",
+  "editor.wordWrapColumn": 120,
+  "editor.folding": false
+}
