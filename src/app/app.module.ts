@@ -33,6 +33,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { OwnerInventory } from './posts/inventory/owner-inventory.component';
 
 
 
@@ -44,12 +45,12 @@ import { SignupComponent } from './signup/signup.component';
     PostListComponent,
     routingComponents,
     MessagepageComponent,
-    DashboardComponent,
     WelcomeComponent,
     LoginComponent,
     SigninComponent,
     SignupComponent,
-    DashboardComponent
+    DashboardComponent,
+    OwnerInventory
   ],
   imports: [
     BrowserModule,

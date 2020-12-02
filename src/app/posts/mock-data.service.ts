@@ -14,7 +14,7 @@ import { Item } from './posts.mock-data';
 export const mockData: Item[] = [
   {
     itemId: "xxxx111",
-    ownerId: "friendwf@gmail.com,",
+    ownerId: "friendwf@gmail.com",
     category: "yard",
     name: "shovel",
     description: "this is a good shovel",
@@ -23,7 +23,7 @@ export const mockData: Item[] = [
   },
   {
     itemId: "xxxx000",
-    ownerId: "fewf@gmail.co,",
+    ownerId: "fewf@gmail.com",
     category: "kitchen",
     name: "hammer",
     description: "this is a good hammer",
