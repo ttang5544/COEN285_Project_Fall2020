@@ -22,6 +22,6 @@ export class reserveDataService {
       renterID
     };
     this.reserveDatas.push(tempt);
-    //console.log(this.reserveDatas.length);
+    console.log(this.reserveDatas);
   }
 }

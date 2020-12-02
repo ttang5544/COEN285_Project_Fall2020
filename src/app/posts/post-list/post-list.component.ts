@@ -70,11 +70,11 @@ export class DialogOverviewExampleDialog {
   // content: string;
   // imgurl: string;
   // cate: string;
-  public reserveDataService: reserveDataService;
 
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    public reserveDataService: reserveDataService
   ) {
     if (data && data.postData) {
       this.title = data.postData.name || '(no title)'; //CHANGED
@@ -102,8 +102,8 @@ export class DialogOverviewExampleDialog {
    */
 
   confirmReserveClick(){
-    //this.reserveDataService.addReserveData(this.startdate, this.enddate, this.reserve.itemId, this.reserve.dailyPrice,this.reserve.ownerId, "NULL renter ID" );
-    this.reserveDataService.addReserveData(this.startdate, this.enddate, "3",20,"1", "NULL renter ID" );
+    this.reserveDataService.addReserveData(this.startdate, this.enddate, this.reserve.itemId, this.reserve.dailyPrice,this.reserve.ownerId, "NULL renter ID" );
+    //this.reserveDataService.addReserveData(this.startdate, this.enddate, "3",20,"1", "NULL renter ID" );
     this.dialogRef.close();
   }
 
