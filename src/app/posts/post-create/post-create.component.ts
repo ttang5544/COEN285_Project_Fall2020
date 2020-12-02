@@ -13,7 +13,7 @@ export class PostCreateComponent {
 
   msg = "";
   url;
-  cates = categories.sort();
+  cates = categories;
 
   constructor(public postsService: PostsService) {}
 
@@ -41,7 +41,7 @@ export class PostCreateComponent {
 
   onAddPost(form: NgForm) {
     if (form.invalid) return;
-    this.postsService.addPost(form.value.title, form.value.content, this.url, form.value.cate);
+    this.postsService.addPost(form.value.title, form.value.content, this.url, form.value.cate, form.value.dayprice);
     form.resetForm();
   }
 }

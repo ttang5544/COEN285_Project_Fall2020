@@ -2,14 +2,14 @@
 <div mat-dialog-content>
   Item: {{ this.title }}
   <br>
-  Rental starts at:
+  Rental starts at: {{this.startdate}}
   <br>
-  Rental ends at:
+  Rental ends at: {{this.enddate}}
   <br>
-  Estimated Price:
+  Estimated Price: {{this.price}}
   <br>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancel</button>
-  <button mat-button (click)="onNoClick()">Confirm my Rental</button>
+  <button mat-button (click)="confirmReserveClick()">Confirm my Rental</button>
 </div>

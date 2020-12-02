@@ -3,4 +3,5 @@ export interface Post {
   content: string;
   imgurl: string;
   cate: string;
+  priceperday: number;
 }
