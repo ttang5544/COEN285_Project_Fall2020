@@ -66,7 +66,7 @@ export class DialogOverviewExampleDialog {
   title: string;
   startdate: Date;
   enddate: Date;
-  price: number;
+  estimatedprice: number;
   // content: string;
   // imgurl: string;
   // cate: string;
@@ -80,8 +80,9 @@ export class DialogOverviewExampleDialog {
       this.title = data.postData.name || '(no title)'; //CHANGED
       this.startdate = data.startdate;
       this.enddate = data.enddate;
-      this.price = 100;
       this.reserve = data.postData;
+      const daydiff = Math.abs(this.parseDate(this.enddate).getTime() - this.parseDate(this.startdate).getTime());
+      this.estimatedprice = Math.ceil(daydiff / (1000 * 3600 * 24)) * this.reserve.dailyPrice;
 
       //this.content = data.postData.content || '(no content)';
       //this.imgurl = data.postData.imgurl || '';
@@ -92,26 +93,27 @@ export class DialogOverviewExampleDialog {
   onNoClick(): void {
     this.dialogRef.close();
   }
+
+  parseDate(input) {
+    var parts = input.match(/(\d+)/g);
+    return new Date(parts[0], parts[1]-1, parts[2]); // months are 0-based
+  }
+
   /**
-   *   startdate: Date;
-  enddate: Date;
-  itemID: string;
-  itemDailyPrice: number;
-  ownerID: string;
-  renterID: string;
-   */
+  reserveData:{
+    startdate: Date;
+    enddate: Date;
+    itemID: string;
+    itemDailyPrice: number;
+    ownerID: string;
+    renterID: string;
+  }
+  */
 
   confirmReserveClick(){
     this.reserveDataService.addReserveData(this.startdate, this.enddate, this.reserve.itemId, this.reserve.dailyPrice,this.reserve.ownerId, "NULL renter ID" );
-    //this.reserveDataService.addReserveData(this.startdate, this.enddate, "3",20,"1", "NULL renter ID" );
     this.dialogRef.close();
   }
 
 }
-  /* // #1 is same as
-postsService: PostsService;
 
-constructor(postService: PostsService) {
-  this.postsService = postService;
-}
-*/
