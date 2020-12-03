@@ -23,7 +23,7 @@ export class SignupComponent implements OnInit {
   signUp() {
     this.userAuth.signup(this.email, this.password, this.firstname, this.lastname);
     this.userAuth.login(this.email, this.password);
-    this.router.navigate(['/dashboard']);
+    this.router.navigate(['/item-list-path']);
     //console.log(this.email+this.password+this.firstname+this.lastname)
   }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit, ApplicationRef } from '@angular/core';
 import { Item } from '../../data-models/item.model';
-import { ItemDataService } from '../../app-services/backend-services/midlevel-services/item-data.facade.service';
+import { ItemsMockService } from '../../mock-backend/item-mock.service';
 
 @Component({
   selector: 'owner-inventory',
@@ -11,7 +11,7 @@ export class OwnerInventory implements OnInit {
 
   items: Item[] = [];
 
-  constructor(public itemsService: ItemDataService, public appRef: ApplicationRef) { }
+  constructor(public itemsService: ItemsMockService, public appRef: ApplicationRef) { }
 
   ngOnInit() {
     this.items = [...this.itemsService.getItems()];

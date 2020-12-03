@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ItemDataService } from './item-data.facade.service';
+import { ItemDataFacadeService } from './item-data.facade.service';
 
 describe('ItemDataService', () => {
-  let service: ItemDataService;
+  let service: ItemDataFacadeService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ItemDataService);
+    service = TestBed.inject(ItemDataFacadeService);
   });
 
   it('should be created', () => {

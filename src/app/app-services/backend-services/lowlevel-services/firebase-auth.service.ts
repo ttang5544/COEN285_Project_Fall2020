@@ -2,19 +2,37 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable, from, of } from 'rxjs';
 import firebase from 'firebase';
-import { SimpleResponse } from '../utilities/request-response.model';
+import { User } from '../../../data-models/auth-data.model';
+import { map, switchMap, share } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirebaseAuthService {
+  loggedIn = false;
+  currUser$: Observable<User>;
+  isAuthenticated$: Observable<boolean>;
 
   constructor(private afAuth: AngularFireAuth) {
-
+    this.currUser$ = this.afAuth.user.pipe(
+      // switchMap((user: firebase.User) => {
+      //   if (user) {
+      //     const appUser: User = {
+      //       uid: user.uid,
+      //       email: user.email,
+      //       displayName: user.displayName
+      //     };
+      //     return appUser;
+      //   }
+      // })
+      share()
+    );
   }
 
-  login() {
-
+  login(email: string, password: string) {
+    if (email && password) {
+      this.afAuth.signInWithEmailAndPassword(email, password);
+    }
   }
 
   logout() {
@@ -34,7 +52,7 @@ export class FirebaseAuthService {
           if (cred && cred.user) {
             return cred.user.updateProfile({ displayName: firstName + ' ' + lastName });
           }
-          throw { code: 'nocred', message: 'createUserWithEmail DID NOT RETURN USER CREDENTIAL' };
+          throw { code: 'auth/invalid-argument', message: 'Error creating user account' };
         }).catch((e: firebase.FirebaseError) => {
           return e;
         })

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ItemDataMockService } from '../../mock-backend/item-mock.service';
+import { ItemsMockService } from '../../mock-backend/item-mock.service';
 import { categories } from '../../data-models/categories.model';
 
 @Component({
@@ -14,7 +14,7 @@ export class ItemCreateComponent {
   url;
   cates = categories;
 
-  constructor(public itemsService: ItemDataMockService) { }
+  constructor(public itemsService: ItemsMockService) { }
 
   selectFile(event) {
     if (!event.target.files[0] || event.target.files[0].length === 0) {

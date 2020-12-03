@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Item } from '../../data-models/item.model';
-import { ItemDataMockService } from '../../mock-backend/item-mock.service';
+import { ItemsMockService } from '../../mock-backend/item-mock.service';
 import { DialogOverviewExampleDialog } from './dialog-overview-example/dialog-overview-example-dialog';
 
 
@@ -17,7 +17,7 @@ export class ItemListComponent implements OnInit {
   startdate: Date;
   enddate: Date;
 
-  constructor(public itemsService: ItemDataMockService, public dialog: MatDialog) { }  // #1
+  constructor(public itemsService: ItemsMockService, public dialog: MatDialog) { }  // #1
 
   ngOnInit() {
     this.items = [...this.itemsService.getItems()];
