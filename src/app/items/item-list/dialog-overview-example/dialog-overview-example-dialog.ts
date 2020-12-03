@@ -1,21 +1,27 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DialogData } from '../../../components/items/item-list/dialog-data.model';
+import { DialogData } from '../dialog-data.model';
+import { Item } from '../../item.model';
 
 @Component({
   selector: 'dialog-overview-example-dialog',
   templateUrl: 'dialog-overview-example-dialog.html',
 })
 export class DialogOverviewExampleDialog {
+  reserve: Item;
   category: 'exercise' | 'yard' | 'kitchen';
   name: string;
   description: string;
   picture: string;
   dailyPrice: number;
+  startdate: Date;
+  enddate: Date;
+  estimatedprice: number;
 
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    public reserveDataService: reserveDataService
   ) {
     if (data && data.itemData) {
       this.category = data.itemData.category || null;
@@ -23,10 +29,26 @@ export class DialogOverviewExampleDialog {
       this.description = data.itemData.description || '(no content)';
       this.picture = data.itemData.picture || '';
       this.dailyPrice = data.itemData.dailyPrice || null;
+      this.startdate = data.startdate;
+      this.enddate = data.enddate;
+      this.reserve = data.itemData;
+      const daydiff = Math.abs(this.parseDate(this.enddate).getTime() - this.parseDate(this.startdate).getTime());
+      this.estimatedprice = Math.ceil(daydiff / (1000 * 3600 * 24)) * this.reserve.dailyPrice;
     }
   }
 
   onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  parseDate(input) {
+    var parts = input.match(/(\d+)/g);
+    return new Date(parts[0], parts[1] - 1, parts[2]); // months are 0-based
+  }
+
+
+  confirmReserveClick() {
+    this.reserveDataService.addReserveData(this.startdate, this.enddate, this.reserve.itemId, this.reserve.dailyPrice, this.reserve.ownerId, "NULL renter ID");
     this.dialogRef.close();
   }
 

@@ -23,7 +23,7 @@ service cloud.firestore {
 
 
     match /items/{uid} {
-      function isValidItemData
+      function isValidItemData() {}
     }
 
 

@@ -1,9 +1,5 @@
 import { Component } from '@angular/core';
-<<<<<<< Updated upstream
-import { Post } from './posts/post.model';
-=======
-import { ItemData } from './components/items/item.model';
->>>>>>> Stashed changes
+import { Item } from './items/item.model';
 
 @Component({
   selector: 'app-root',
@@ -12,14 +8,10 @@ import { ItemData } from './components/items/item.model';
 })
 export class AppComponent {
   title = 'tech-support-project';
-<<<<<<< Updated upstream
-  storedPosts: Post[] = [];
-=======
-  storedItems: ItemData[] = [];
->>>>>>> Stashed changes
+  storedItems: Item[] = [];
 
-  onPostAdded(post) {
-    this.storedPosts.push(post);
+  onItemAdded(item) {
+    this.storedItems.push(item);
   }
 }
 
