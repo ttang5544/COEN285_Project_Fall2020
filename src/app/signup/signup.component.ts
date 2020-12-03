@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { userAuth } from '../userAuth.service';
 import { Router } from '@angular/router';
+import { AuthMockService } from '../mock-backend/auth-mock.service';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-signup',
@@ -14,14 +15,15 @@ export class SignupComponent implements OnInit {
   password: string;
   hide = true;
 
-  constructor(private router:Router, public userAuth: userAuth){}
+  constructor(private router: Router, public userAuth: AuthMockService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
 
   signUp() {
-    this.userAuth.registerWithEmail(this.email,this.password,this.firstname,this.lastname);
-    this.router.navigate(['/dashboard'])
+    this.userAuth.signup(this.email, this.password, this.firstname, this.lastname);
+    this.userAuth.login(this.email, this.password);
+    this.router.navigate(['/dashboard']);
     //console.log(this.email+this.password+this.firstname+this.lastname)
   }
 

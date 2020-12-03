@@ -1,16 +1,18 @@
 "use strict";
+// import * as admin from 'firebase-admin';
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.setupNewAccount = exports.auth = void 0;
-const admin = require("firebase-admin");
+exports.sendConfirmationEmail = exports.setupNewAccount = void 0;
 const functions = require("firebase-functions");
+const init = require("../utils/admin");
+init.initAdmin();
 const firestore_1 = require("../firestore");
-exports.auth = admin.auth();
+const emailer = require("../utils/send-email");
 exports.setupNewAccount = functions.auth.user().onCreate(async (user, context) => {
-    const uid = user.uid;
+    const userid = user.uid;
     const uemail = user.email;
     const uname = user.displayName || null;
     // init firestore/users
-    const userRef = firestore_1.firestoreInstance.collection('users').doc(uid);
+    const userRef = firestore_1.firestoreInstance.collection('users').doc(userid);
     await userRef.set({
         profile: {
             name: uname,
@@ -19,6 +21,24 @@ exports.setupNewAccount = functions.auth.user().onCreate(async (user, context) =
         items: [],
         reservations: []
     });
-    return;
+    await emailer.sendEmailMessage(uemail, userid, user.displayName || '', 'signup');
+});
+exports.sendConfirmationEmail = functions.https
+    .onCall((data, context) => {
+    let item;
+    let user;
+    let owner;
+    if (context && context.hasOwnProperty('auth') && context.auth) {
+        // tslint:disable: no-string-literal
+        item = data['itemName'] ? data.itemName : 'tool';
+        user = data['userName'] ? data.userName : '';
+        owner = data['ownerName'] ? data.ownerName : '';
+        return emailer.sendEmailMessage(context.auth.token.email, context.auth.uid, user, 'confirm', item, owner)
+            .then((r) => null)
+            .catch(e => {
+            return new functions.https.HttpsError('aborted', `Error sending email message - ${e}`);
+        });
+    }
+    return new functions.https.HttpsError('permission-denied', 'You must be logged in');
 });
 //# sourceMappingURL=index.js.map
