@@ -49,3 +49,6 @@ testem.log
 Thumbs.db
 
 build/
+
+**/package-lock.json
+**/*.spec.ts
