@@ -6,7 +6,7 @@
        fxFlex.xs="100%"
        fxFlex.sm="33%"
        *ngFor="let item of items; let i = index">
-    <mat-card class="example-card" *ngIf="item.ownerId == 'friendwf@gmail.com'">
+    <mat-card class="example-card" > <!--*ngIf="item.ownerId == 'friendwf@gmail.com'">-->
       <mat-card-header>
         <mat-card-title>{{ item.name }}</mat-card-title>
         <mat-card-subtitle>{{ item.category }}</mat-card-subtitle>

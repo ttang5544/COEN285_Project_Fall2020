@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ApplicationRef } from '@angular/core';
 import { Item } from '../../data-models/item.model';
-import { mockData } from '../../mock-backend/item.mock-data';
+import { ItemDataService } from '../../app-services/backend-services/midlevel-services/item-data.facade.service';
 
 @Component({
   selector: 'owner-inventory',
@@ -11,18 +11,23 @@ export class OwnerInventory implements OnInit {
 
   items: Item[] = [];
 
+  constructor(public itemsService: ItemDataService, public appRef: ApplicationRef) { }
+
   ngOnInit() {
-    this.items = mockData;
+    this.items = [...this.itemsService.getItems()];
   }
 
   removeRental(i) {
 
-    let msger = `Are you sure you want to remove the ${ mockData[i].name }`;
+    let msger = `Are you sure you want to remove the ${ this.items[i].name }`;
     let remove = confirm(msger);
 
-    if (remove)
-      mockData.splice(i, 1);
+    if (remove) {
+      this.itemsService.removeItem(i);
+      this.appRef.tick();
+    }
+
     //for testing
-    console.log(mockData);
+    console.log(this.items);
   }
 }

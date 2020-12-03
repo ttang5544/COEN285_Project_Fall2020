@@ -7,7 +7,6 @@ import { Item } from '../data-models/item.model';
 export class ItemDataMockService {
   private items: Item[] = [];
 
-
   constructor() {
     this.items = [...mockData]; // use mock data
   }
@@ -27,6 +26,9 @@ export class ItemDataMockService {
       dailyPrice
     };
     this.items.push(newItem);
+  }
 
+  removeItem(index) {
+    this.items.splice(index, 1);
   }
 }
