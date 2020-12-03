@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthMockService } from '../mock-backend/auth-mock.service';
+import { FirebaseAuthService } from '../app-services/backend-services/lowlevel-services/firebase-auth.service';
 
 @Component({
   selector: 'app-login',
@@ -21,15 +22,20 @@ export class LoginComponent implements OnInit {
   //
   //   return this.email.hasError('email') ? 'Not a valid email' : '';
   // }
-  constructor(private router: Router, public userAuth: AuthMockService) { }
+  constructor(private router: Router, private userAuth: FirebaseAuthService) { }
 
   ngOnInit(): void {
   }
 
-  login() {
-    this.userAuth.login(this.email, this.password);
-    this.router.navigate(['/item-list-path']);
-    // console.log(this.email+this.password+this.firstname+this.lastname)
+  login(email: string, password: string) {
+    this.userAuth.login(email, password)
+      .then((r) => {
+        console.log('successfully logged in');
+        this.router.navigate(['/item-list-path']);
+      })
+      .catch((e) => {
+        console.error('invalid login', e);
+      });
   }
 
 }

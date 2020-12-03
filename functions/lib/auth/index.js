@@ -13,15 +13,26 @@ exports.setupNewAccount = functions.auth.user().onCreate(async (user, context) =
     const uname = user.displayName || null;
     // init firestore/users
     const userRef = firestore_1.firestoreInstance.collection('users').doc(userid);
-    await userRef.set({
-        profile: {
-            name: uname,
-            email: uemail
-        },
-        items: [],
-        reservations: []
-    });
-    await emailer.sendEmailMessage(uemail, userid, user.displayName || '', 'signup');
+    try {
+        await userRef.set({
+            profile: {
+                name: uname,
+                email: uemail
+            },
+            items: [],
+            reservations: []
+        });
+    }
+    catch (e) {
+        console.error('ERROR - setupNewAccount - firestore dir writes failed');
+        return e;
+    }
+    try {
+        await emailer.sendEmailMessage(uemail, userid, user.displayName || '', 'signup');
+    }
+    catch (e) {
+        console.error('ERROR - setupNewAccount - sending mail failed');
+    }
 });
 exports.sendConfirmationEmail = functions.https
     .onCall((data, context) => {

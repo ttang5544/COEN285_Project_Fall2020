@@ -8,13 +8,7 @@ export interface AbstractResponse {
 
 export interface SimpleResponse extends AbstractResponse {
   success: boolean;
-  // error?: firebase.FirebaseError;
-  error?: {
-    code: string; // format: auth/user-not-found  service/string-code
-    message: string; // FOR DEVELOPER NOT END-USER DISPLAY
-    name?: string; // class name of error - FirebaseError
-    stack?: string;
-  };
+  error?: firebase.FirebaseError;   // code (auth/invalid-arguments) ,
 }
 
 

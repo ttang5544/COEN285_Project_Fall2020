@@ -19,7 +19,7 @@ export const manageItemOnLists = functions.firestore
     if (change.after.exists && (change.after.data() as BackendItem).ownerId) {
       // add itemId to owner's Items[]
       ownerId = (change.after.data() as BackendItem).ownerId;
-      await firestoreInstance.doc(`users/${ ownerId }`).update({
+      await firestoreInstance.doc(`/users/${ ownerId }`).update({
         items: admin.firestore.FieldValue.arrayUnion(itemId)
       });
       console.log(`${ itemId } has been Added to ${ ownerId }'s Item list`);
@@ -28,7 +28,7 @@ export const manageItemOnLists = functions.firestore
     else if (change.before.exists && !change.after.exists) {
       // remove itemId from owner's Items[]
       ownerId = (change.before.data() as BackendItem).ownerId;
-      await firestoreInstance.doc(`users/${ ownerId }`).update({
+      await firestoreInstance.doc(`/users/${ ownerId }`).update({
         items: admin.firestore.FieldValue.arrayRemove(itemId)
       });
       console.log(`${ itemId } has been Removed to ${ ownerId }'s Item list`);
@@ -37,7 +37,7 @@ export const manageItemOnLists = functions.firestore
   });
 
 export const addReservationToLists = functions.firestore
-  .document('reservations/{resId}')
+  .document('/reservations/{resId}')
   .onWrite(async (change, context) => {
     if (change.after.exists) {
       const resId = context.params.resId as string;
@@ -47,17 +47,17 @@ export const addReservationToLists = functions.firestore
       const itemId = resData.itemId;
 
       // add to owner's reservations-owner list
-      await firestoreInstance.doc(`users/${ ownerId }/reservations`).update({
+      await firestoreInstance.doc(`/users/${ ownerId }/reservations`).update({
         owner: admin.firestore.FieldValue.arrayUnion(resId)
       });
       console.log(`${ resId } has been Added to ${ ownerId }'s Reservation-Owner list`);
       // add to renter's reservations-renter list
-      await firestoreInstance.doc(`users/${ renterId }/reservations`).update({
+      await firestoreInstance.doc(`/users/${ renterId }/reservations`).update({
         renter: admin.firestore.FieldValue.arrayUnion(resId)
       });
       console.log(`${ resId } has been Added to ${ ownerId }'s Reservation-Owner list`);
       // add to item's reservations list
-      await firestoreInstance.doc(`items/${ itemId }`).update({
+      await firestoreInstance.doc(`/items/${ itemId }`).update({
         reservations: admin.firestore.FieldValue.arrayUnion(resId)
       });
       console.log(`${ resId } has been Added to ${ itemId }'s reservations list`);

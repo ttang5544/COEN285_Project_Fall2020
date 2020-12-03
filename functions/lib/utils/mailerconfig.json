@@ -2,7 +2,10 @@
     "mailservice": {
         "replytoemail": "tts.scu@gmail.com",
         "service": "gmail",
+        "host": "smtp.gmail.com",
+        "port": 465,
+        "secure": true,
         "email": "tts.scu@gmail.com",
-        "password": "scu_project_group"
+        "password": "tfhaexkfulorphkd"
     }
 }
