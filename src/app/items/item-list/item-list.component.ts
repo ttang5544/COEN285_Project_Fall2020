@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Item } from '../item.model';
+import { Item } from '../../data-models/item.model';
 import { ItemsService } from '../items.service';
 import { DialogOverviewExampleDialog } from './dialog-overview-example/dialog-overview-example-dialog';
 
@@ -21,9 +21,8 @@ export class ItemListComponent implements OnInit {
 
   ngOnInit() {
     this.items = [...this.itemsService.getItems()];
-    this.posts = mockData; //CHANGED
-   this.startdate =new Date();
-   this.enddate =new Date();
+    this.startdate = new Date();
+    this.enddate = new Date();
   }
 
   openDialog(index: number): void {

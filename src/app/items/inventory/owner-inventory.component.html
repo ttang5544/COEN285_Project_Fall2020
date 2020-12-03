@@ -1,27 +1,30 @@
-<hr>
-<h1>Your Inventory of the past Posts</h1>
+<hr />
+<h1>Your Inventory of the Items</h1>
 <div fxLayout="row wrap" fxLayoutGap="16px grid">
-  <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let post of posts; let i=index;">
-
-    <mat-card class="example-card" *ngIf="post.ownerId=='friendwf@gmail.com'">
+  <div
+       fxFlex="25%"
+       fxFlex.xs="100%"
+       fxFlex.sm="33%"
+       *ngFor="let item of items; let i = index">
+    <mat-card class="example-card" *ngIf="item.ownerId == 'friendwf@gmail.com'">
       <mat-card-header>
-        <mat-card-title>{{post.name}}</mat-card-title>
-        <mat-card-subtitle>{{post.category}}</mat-card-subtitle>
+        <mat-card-title>{{ item.name }}</mat-card-title>
+        <mat-card-subtitle>{{ item.category }}</mat-card-subtitle>
       </mat-card-header>
-      <img mat-card-image src={{post.pictureFilename}}>
-      <div *ngIf="!post.pictureFilename">
+      <img mat-card-image src="{{ item.picture }}" />
+      <div *ngIf="!item.picture">
         <h1>no picture</h1>
       </div>
       <mat-card-content>
-        <p>{{post.description}}</p>
+        <p>{{ item.description }}</p>
       </mat-card-content>
-      <h2>Price per day (in dollars): {{post.dailyPrice}}</h2>
-      <hr>
+      <h2>Price per day (in dollars): {{ item.dailyPrice }}</h2>
+      <hr />
       <mat-card-actions>
-        <button mat-button color="warn" (click)="removeRental(i)">DELETE</button>
+        <button mat-button color="warn" (click)="removeRental(i)">
+          DELETE
+        </button>
       </mat-card-actions>
     </mat-card>
-
   </div>
 </div>
-

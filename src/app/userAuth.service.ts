@@ -1,6 +1,7 @@
-import { signupData } from './signupData.model';
-import { loginData } from './loginData.model';
+
 import { Injectable } from '@angular/core';
+import { loginData } from './data-models/loginData.model';
+import { signupData } from './data-models/signupData.model';
 //import { mockData } from './posts.mock-data';
 
 @Injectable({ providedIn: 'root' })
@@ -15,7 +16,7 @@ export class userAuth {
     this.loginDatas = [];
   }
 
-  registerWithEmail( email: string, password: string, firstname: string, lastname: string) {
+  registerWithEmail(email: string, password: string, firstname: string, lastname: string) {
     const tempt: signupData = {
       email,
       password,
@@ -26,7 +27,7 @@ export class userAuth {
     console.log(this.signupDatas);
   }
 
-  loginWithEmail( email: string, password: string) {
+  loginWithEmail(email: string, password: string) {
     const tempt: loginData = {
       email,
       password

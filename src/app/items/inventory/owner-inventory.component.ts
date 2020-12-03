@@ -1,29 +1,26 @@
-import { Component } from '@angular/core';
-//import { Post } from '../post.model';
-//import { PostsService } from '../posts.service';
-import { mockData } from '../mock-data.service';
-import { Item } from '../posts.mock-data';
-import { analyzeAndValidateNgModules } from '@angular/compiler';
+import { Component, OnInit } from '@angular/core';
+import { Item } from '../../data-models/item.model';
+import { mockData } from '../item.mock-data';
 
 @Component({
-    selector: 'owner-inventory',
-    templateUrl: './owner-inventory.component.html',
-    styleUrls: [ ]
+  selector: 'owner-inventory',
+  templateUrl: './owner-inventory.component.html',
+  styleUrls: []
 })
-export class OwnerInventory {
+export class OwnerInventory implements OnInit {
 
-  posts: Item[] = [];
+  items: Item[] = [];
 
   ngOnInit() {
-    this.posts = mockData; //CHANGED
+    this.items = mockData;
   }
 
   removeRental(i) {
 
-    let msger =  `Are you sure you want to remove the ${mockData[i].name}`;
+    let msger = `Are you sure you want to remove the ${ mockData[i].name }`;
     let remove = confirm(msger);
 
-    if(remove)
+    if (remove)
       mockData.splice(i, 1);
     //for testing
     console.log(mockData);

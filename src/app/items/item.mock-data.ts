@@ -1,4 +1,4 @@
-import { Item } from './item.model';
+import { Item } from '../data-models/item.model';
 
 
 export const mockData: Item[] = [
@@ -26,8 +26,29 @@ export const mockData: Item[] = [
     category: 'kitchen',
     name: 'drill',
     description: '33bbb',
-    picture: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Battdrill.jpg/150px-Battdrill.jpg',
+    picture: 'trowel.jpg',
     dailyPrice: 125.99
+  }
+];
+
+const mockData2: Item[] = [
+  {
+    itemId: 'xxxx111',
+    ownerId: 'friendwf@gmail.com',
+    category: 'yard',
+    name: 'shovel',
+    description: 'this is a good shovel',
+    picture: 'shovel.jpg',
+    dailyPrice: 20
+  },
+  {
+    itemId: 'xxxx000',
+    ownerId: 'fewf@gmail.com',
+    category: 'kitchen',
+    name: 'hammer',
+    description: 'this is a good hammer',
+    picture: 'hammer.png',
+    dailyPrice: 10
   }
 ];
 

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ItemsService } from '../items.service';
-import { categories } from '../categories.model';
+import { categories } from '../../data-models/categories.model';
 
 @Component({
   selector: 'app-item-create',

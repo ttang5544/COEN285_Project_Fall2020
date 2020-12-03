@@ -1,7 +1,8 @@
+import { DialogData } from './dialog-data.model';
+import { Item } from '../../../data-models/item.model';
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DialogData } from '../dialog-data.model';
-import { Item } from '../../item.model';
+import { ReservationDataService } from '../reserveData.service';
 
 @Component({
   selector: 'dialog-overview-example-dialog',
@@ -21,7 +22,7 @@ export class DialogOverviewExampleDialog {
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
-    public reserveDataService: reserveDataService
+    public reserveDataService: ReservationDataService
   ) {
     if (data && data.itemData) {
       this.category = data.itemData.category || null;

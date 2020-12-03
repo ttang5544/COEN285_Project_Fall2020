@@ -1,19 +1,18 @@
-import { reserveData } from './reserveData.model';
+import { ReservationData } from './reserveData.model';
 import { Injectable } from '@angular/core';
-//import { mockData } from './posts.mock-data';
 
 @Injectable({ providedIn: 'root' })
 
-export class reserveDataService {
+export class ReservationDataService {
 
-  private reserveDatas: reserveData[] = [];
+  private reservations: ReservationData[] = [];
 
   constructor() {
-    this.reserveDatas = [];
+    this.reservations = [];
   }
 
-  addReserveData( startdate: Date, enddate: Date, itemID: string, itemDailyPrice: number, ownerID: string, renterID: string) {
-    const tempt: reserveData = {
+  addReserveData(startdate: Date, enddate: Date, itemID: string, itemDailyPrice: number, ownerID: string, renterID: string) {
+    const tempt: ReservationData = {
       startdate,
       enddate,
       itemID,
@@ -21,7 +20,7 @@ export class reserveDataService {
       ownerID,
       renterID
     };
-    this.reserveDatas.push(tempt);
-    console.log(this.reserveDatas);
+    this.reservations.push(tempt);
+    console.log(this.reservations);
   }
 }

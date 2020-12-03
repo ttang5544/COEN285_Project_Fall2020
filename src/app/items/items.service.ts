@@ -1,6 +1,6 @@
-import { Item } from './item.model';
 import { Injectable } from '@angular/core';
 import { mockData } from './item.mock-data';
+import { Item } from '../data-models/item.model';
 
 @Injectable({ providedIn: 'root' })
 
@@ -19,7 +19,7 @@ export class ItemsService {
   addItem(category: 'kitchen' | 'yard' | 'exercise', name: string, description: string, picture: string, dailyPrice: number) {
     const newItem: Item = {
       itemId: null,
-      ownerId: 'GET FROM AUTH SERVICE',
+      ownerId: '',
       category,
       name,
       description,
