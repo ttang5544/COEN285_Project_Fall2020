@@ -149,6 +149,7 @@ import { DialogOverviewExampleDialog } from './items/item-list/dialog-overview-e
     MatSortModule,
     MatTableModule
   ],
+  entryComponents: [DialogOverviewExampleDialog],
   providers: [
     CurrencyPipe,
   ],

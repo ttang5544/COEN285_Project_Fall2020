@@ -53,6 +53,16 @@ export class DialogOverviewExampleDialog {
     this.dialogRef.close();
   }
 
+  private numberToDate(val: number): Date {
+    return new Date(val);
+  }
+
+  private dateToNumber(date: Date): number {
+    if (date) {
+      return date.valueOf();
+    }
+  }
+
 }
   /* // #1 is same as
 postsService: PostsService;
