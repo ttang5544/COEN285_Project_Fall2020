@@ -1,0 +1,31 @@
+<app-header></app-header>
+<mat-card [style.width]="'100%'">
+  <header>
+    <h2>Request to Rent Received</h2>
+  </header>
+  <p>[Renter name] wants to rent your [itemname] from [from date] to [to date]</p>
+  <div>
+    <button mat-icon-button color="accent">
+      <mat-icon>check_circle_outline</mat-icon>
+      Accept
+    </button>
+    <span class="tab"></span>
+    <button mat-button color="warn">
+      <mat-icon>highlight_off</mat-icon>
+      Reject
+    </button>
+  </div>
+</mat-card>
+<br>
+<mat-card [style.width]="'100%'" >
+  <header>
+    <h2>Rental Accepted</h2>
+  </header>
+  <p>[Owner name] has accepted your request to rent</p>
+  <div>
+    <button mat-icon-button color="accent">
+      <mat-icon>check_circle_outline</mat-icon>
+      Okay
+    </button>
+  </div>
+</mat-card>
