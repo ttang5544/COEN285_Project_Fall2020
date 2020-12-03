@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Item } from '../../data-models/item.model';
-import { mockData } from '../item.mock-data';
+import { mockData } from '../../mock-backend/item.mock-data';
 
 @Component({
   selector: 'owner-inventory',

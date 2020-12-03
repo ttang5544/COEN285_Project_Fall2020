@@ -1,4 +1,4 @@
-import { Item } from '../../../data-models/item.model';
+import { Item } from './item.model';
 
 export interface DialogData {
   itemData: Item;

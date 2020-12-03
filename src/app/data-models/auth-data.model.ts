@@ -4,3 +4,10 @@ export interface signupData {
   firstname: string;
   lastname: string;
 }
+
+
+export interface User {
+  email: string;
+  uid: string;
+  displayName: string;
+}

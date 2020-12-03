@@ -4,7 +4,7 @@ import { Item } from '../data-models/item.model';
 
 @Injectable({ providedIn: 'root' })
 
-export class ItemsService {
+export class ItemDataMockService {
   private items: Item[] = [];
 
 

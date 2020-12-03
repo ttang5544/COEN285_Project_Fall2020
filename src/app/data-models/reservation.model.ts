@@ -9,7 +9,7 @@ OwnerID			from Item data
 RenterID			from authService.getCurrentUserId()
 */
 
-export interface ReservationData {
+export interface Reservation {
   startdate: Date;
   enddate: Date;
   itemID: string;

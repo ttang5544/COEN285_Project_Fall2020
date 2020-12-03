@@ -1,8 +1,8 @@
-import { DialogData } from './dialog-data.model';
+import { DialogData } from '../../../data-models/dialog-data.model';
 import { Item } from '../../../data-models/item.model';
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ReservationDataService } from '../reserveData.service';
+import { ReservationDataService } from '../../../mock-backend/reservation-mock.service';
 
 @Component({
   selector: 'dialog-overview-example-dialog',
