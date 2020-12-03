@@ -50,11 +50,10 @@ const coreModules = [
   CommonModule,
   FormsModule,
   ReactiveFormsModule,
-
-  FlexLayoutModule,
 ];
 
 const materialModules = [
+  FlexLayoutModule,
   MatAutocompleteModule,
   MatCheckboxModule,
   MatDatepickerModule,

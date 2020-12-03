@@ -1,19 +1,18 @@
 <h1 mat-dialog-title>Summary of your rental request</h1>
 <div mat-dialog-content>
-
-  <img [src]="this.picture">
+  <img [src]="this.picture" />
   Item: {{ this.name }}
-  <br>
-  Category: {{ this.category }} Price: $ {{ this.dailyPrice | currency }}
-  <br>
+  <br />
+  Category: {{ this.category }} Price: $ {{ this.dailyPrice }}
+  <br />
   Description: {{ this.description }}
-  <br>
+  <br />
   Rental starts at: {{this.startdate}}
-  <br>
+  <br />
   Rental ends at: {{this.enddate}}
-  <br>
+  <br />
   Estimated Price (in dollars): {{this.estimatedprice}}
-  <br>
+  <br />
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancel</button>
