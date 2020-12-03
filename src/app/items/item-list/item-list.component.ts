@@ -14,17 +14,25 @@ import { DialogOverviewExampleDialog } from './dialog-overview-example/dialog-ov
 export class ItemListComponent implements OnInit {
   items: Item[] = [];
 
+  startdate: Date;
+  enddate: Date;
+
   constructor(public itemsService: ItemsService, public dialog: MatDialog) { }  // #1
 
   ngOnInit() {
     this.items = [...this.itemsService.getItems()];
+    this.posts = mockData; //CHANGED
+   this.startdate =new Date();
+   this.enddate =new Date();
   }
 
   openDialog(index: number): void {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
       width: '400px',
       data: {
-        itemData: this.items[index]
+        itemData: this.items[index],
+        startdate: this.startdate,
+        enddate: this.enddate
       }
     });
 
