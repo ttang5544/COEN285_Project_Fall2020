@@ -1,18 +1,18 @@
 <h1 mat-dialog-title>Summary of your rental request</h1>
 <div mat-dialog-content>
-  <img [src]="this.picture" />
+  <img height="200px" [src]="this.picture" />
   <!-- <!-- Item: {{ this.name }} -->
   <br />
   Category: {{ this.category }}
   Price: $ {{ this.dailyPrice }}
   <br />
-  Description: {{ this.description }} -->
+  Description: {{ this.description }}
   <br />
   Rental starts at: {{this.startdate}}
   <br />
   Rental ends at: {{this.enddate}}
   <br />
-  Estimated Total Cost (in dollars): {{this.estimatedprice}}
+  Estimated Total Cost (in dollars): $ {{this.estimatedprice}}
   <br />
 </div>
 <div mat-dialog-actions>

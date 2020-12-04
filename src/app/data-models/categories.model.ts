@@ -3,7 +3,7 @@ interface item_cate {
 }
 
 export let categories: item_cate[] = [
-  {value: 'music'},
+  {value: 'yard'},
   {value: 'kitchen'},
   {value: 'sports'}
 ];

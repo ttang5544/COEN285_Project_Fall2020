@@ -8,7 +8,7 @@ export const mockData1: Item[] = [
     ownerId: 'someOwnerId',
     category: 'yard',
     name: 'hammer',
-    description: 'bbbbb',
+    description: 'A ten year old hammer. Still study and good to use.',
     picture: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Tools-hammer.svg/120px-Tools-hammer.svg.png',
     dailyPrice: 5.5
   },
@@ -17,7 +17,7 @@ export const mockData1: Item[] = [
     ownerId: 'someOwnerId-B',
     category: 'yard',
     name: 'shovel',
-    description: 'post2post2post2post2',
+    description: 'A brand new shovel, lightly used. Good for clearing snow.',
     picture: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Shovel.svg/120px-Shovel.svg.png',
     dailyPrice: 55.75
   },
@@ -25,9 +25,9 @@ export const mockData1: Item[] = [
     itemId: 'ITEM-CCC-999',
     ownerId: 'someOwnerId-C',
     category: 'kitchen',
-    name: 'drill',
-    description: '33bbb',
-    picture: 'trowel.jpg',
+    name: 'blender',
+    description: 'A high powered blender with multiple settings.',
+    picture: 'https://i.imgur.com/HD4wfe9.png',
     dailyPrice: 125.99
   }
 ];
