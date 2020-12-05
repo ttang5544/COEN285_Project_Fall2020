@@ -56,7 +56,7 @@ import { ItemCreateComponent } from './items/item-create/item-create.component';
 import { ItemListComponent } from './items/item-list/item-list.component';
 import { LoginComponent } from './login/login.component';
 import { MessagepageComponent } from './messagepage/messagepage.component';
-import { SharedModule } from './shared.module';
+import { SharedModule } from './@shared/shared.module';
 import { SignupComponent } from './signup/signup.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { DialogOverviewExampleDialog } from './items/item-list/dialog-overview-example/dialog-overview-example-dialog';

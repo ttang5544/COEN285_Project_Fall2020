@@ -10,10 +10,11 @@ RenterID			from authService.getCurrentUserId()
 */
 
 export interface Reservation {
-  startdate: Date;
-  enddate: Date;
+  resId?: string;
   itemID: string;
-  itemDailyPrice: number;
   ownerID: string;
   renterID: string;
+  startdate: Date;
+  enddate: Date;
+  itemDailyPrice: number;
 }

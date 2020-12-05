@@ -24,7 +24,6 @@
     "@angular/platform-browser-dynamic": "^10.2.3",
     "@angular/router": "^10.2.3",
     "angular-material-fileupload": "^3.0.1",
-    "angularfire2": "^5.4.2",
     "firebase": "^8.1.1",
     "node-forge": "^0.10.0",
     "rxjs": "~6.6.0",

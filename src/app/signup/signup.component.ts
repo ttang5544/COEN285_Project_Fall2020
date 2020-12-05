@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthMockService } from '../mock-backend/auth-mock.service';
-import { MatDialog } from '@angular/material/dialog';
-import { FirebaseAuthService } from '../app-services/backend-services/lowlevel-services/firebase-auth.service';
+import { FirebaseAuthService } from '../app-services/backend/firebase/fb-auth.service';
 
 @Component({
   selector: 'app-signup',

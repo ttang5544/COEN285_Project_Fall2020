@@ -1,5 +1,5 @@
-import { Reservation } from '../data-models/reservation.model';
 import { Injectable } from '@angular/core';
+import { Reservation } from '../../@shared/data-models/reservation.model';
 
 @Injectable({ providedIn: 'root' })
 

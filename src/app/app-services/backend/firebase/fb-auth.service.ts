@@ -1,15 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { Observable, from, of } from 'rxjs';
 import firebase from 'firebase';
-import { User } from '../../../data-models/auth-data.model';
-import { share, shareReplay, map } from 'rxjs/operators';
-import { responseFactory } from './response.model';
-
-
-
-
-
+import { from, Observable, of, Subject } from 'rxjs';
+import { map, shareReplay, takeUntil } from 'rxjs/operators';
+import { User } from '../../../@shared/data-models/auth-data.model';
 
 
 
@@ -18,27 +12,49 @@ import { responseFactory } from './response.model';
 @Injectable({
   providedIn: 'root'
 })
-export class FirebaseAuthService {
+export class FirebaseAuthService implements OnDestroy {
+  private unsubOnDestroy = new Subject<void>();
   loggedIn = false;
+  user: User;
   currUser$: Observable<User>;
   isAuthenticated$: Observable<boolean>;
 
   constructor(private afAuth: AngularFireAuth) {
-    this.currUser$ = this.afAuth.user.pipe(
-      map((user: firebase.User) => {
+    this.afAuth.user.pipe(takeUntil(this.unsubOnDestroy))
+      .subscribe((user: firebase.User) => {
         if (user) {
-          const appUser: User = {
+          this.loggedIn = true;
+          this.user = {
             uid: user.uid,
             email: user.email,
             displayName: user.displayName
           };
-          return appUser;
+        } else {
+          this.loggedIn = false;
+          this.user = null;
+        }
+      });
+    this.currUser$ = this.afAuth.user.pipe(
+      map((user: firebase.User) => {
+        if (user) {
+          const currUser = {
+            uid: user.uid,
+            email: user.email,
+            displayName: user.displayName,
+            // claims:
+          };
+          return currUser;
         }
       }),
       shareReplay(1));
-    this.isAuthenticated$ = this.afAuth.user.pipe(
+    this.isAuthenticated$ = this.currUser$.pipe(
       map((user: firebase.User) => !!user),
       shareReplay(1));
+  }
+
+  ngOnDestroy() {
+    this.unsubOnDestroy.next();
+    this.unsubOnDestroy.complete();
   }
 
   login(email: string, password: string): Promise<any> {

@@ -5,15 +5,16 @@
 // admin.initializeApp();
 
 
-import * as auth from './auth/index';
+// import * as auth from './auth/index';
 import * as callable from './callable/index';
 import * as fs from './firestore/index';
 
-export const SetupNewAccount = auth.setupNewAccount;
+// export const SetupNewAccount = auth.setupNewAccount;
 
 
-
+export const CreateNewAccount = callable.createNewAccount;
 export const SendConfirmationEmail = callable.sendRentalConfirmation;
+
 
 
 

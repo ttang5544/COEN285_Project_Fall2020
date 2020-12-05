@@ -52,3 +52,4 @@ build/
 
 **/*.spec.ts
 **/*debug.log
+tslint.json
