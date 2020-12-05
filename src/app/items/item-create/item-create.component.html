@@ -38,20 +38,12 @@
     <h4>Upload the image of your item</h4>
     <div><img [src]="url" *ngIf="url"></div>
     <input type="file" (change)="selectFile($event)">
+    <hr>
+
+    <label>Price per day (in dollars): </label>
+    <input type="number" MatInput ngModel name="dayprice" required #dayprice="ngModel">
+    <mat-error *ngIf="dayprice.invalid">Please enter a price</mat-error>
     <br>
-    <mat-form-field>
-      <input
-             matInput
-             type="number"
-             name="price"
-             placeholder="20.00"
-             min="1.00"
-             max="5000"
-             ngModel
-             required
-             #price="ngModel">
-      <mat-error *ngIf="price.invalid">Plese enter valid number</mat-error>
-    </mat-form-field>
     <br>
     <button
             mat-raised-button
@@ -60,3 +52,5 @@
     </button>
   </form>
 </mat-card>
+
+<owner-inventory></owner-inventory>

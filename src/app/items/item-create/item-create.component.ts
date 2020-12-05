@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ItemsService } from '../items.service';
-import { categories } from '../categories.model';
+import { ItemsMockService } from '../../mock-backend/item-mock.service';
+import { categories } from '../../data-models/categories.model';
 
 @Component({
   selector: 'app-item-create',
@@ -12,9 +12,9 @@ export class ItemCreateComponent {
 
   msg = '';
   url;
-  cates = categories.sort();
+  cates = categories;
 
-  constructor(public itemsService: ItemsService) { }
+  constructor(public itemsService: ItemsMockService) { }
 
   selectFile(event) {
     if (!event.target.files[0] || event.target.files[0].length === 0) {
@@ -40,7 +40,7 @@ export class ItemCreateComponent {
 
   onAddItem(form: NgForm) {
     if (form.invalid) { return; }
-    this.itemsService.addItem(form.value.cate, form.value.name, form.value.description, this.url, form.value.price);
+    this.itemsService.addItem(form.value.cate, form.value.title, form.value.content, this.url, form.value.dayprice);
     form.resetForm();
   }
 }

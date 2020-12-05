@@ -1,9 +1,21 @@
-import * as functions from 'firebase-functions';
+//  TOP LEVEL CLOUD FUNCTIONS INDEX.TS             ======================
+// ======================================================================
 
-// // Start writing Firebase Functions
-// // https://firebase.google.com/docs/functions/typescript
-//
-// export const helloWorld = functions.https.onRequest((request, response) => {
-//   functions.logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+// import * as admin from 'firebase-admin';
+// admin.initializeApp();
+
+
+import * as auth from './auth/index';
+import * as callable from './callable/index';
+import * as fs from './firestore/index';
+
+export const SetupNewAccount = auth.setupNewAccount;
+
+
+
+export const SendConfirmationEmail = callable.sendRentalConfirmation;
+
+
+
+export const ManageItemOnLists = fs.manageItemOnLists;
+export const AddReservationToLists = fs.addReservationToLists;

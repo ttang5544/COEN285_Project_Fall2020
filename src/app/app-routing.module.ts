@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MessagepageComponent } from './messagepage/messagepage.component';
-import { LoginComponent } from './login/login.component';
 import { WelcomeComponent } from './welcome/welcome.component';
-// import { SigninComponent } from './signin/signin.component';
-import { SignupComponent } from './signup/signup.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
 import { ItemCreateComponent } from './items/item-create/item-create.component';
 import { ItemListComponent } from './items/item-list/item-list.component';
+import { MessagepageComponent } from './messagepage/messagepage.component';
+import { OwnerInventory } from './items/inventory/owner-inventory.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'welcome', pathMatch: 'full' },
@@ -17,7 +17,8 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'item-create-path', component: ItemCreateComponent },
   { path: 'item-list-path', component: ItemListComponent },
-  { path: 'app-messagepage-component', component: MessagepageComponent }
+  { path: 'app-messagepage-component', component: MessagepageComponent },
+  { path: 'owner-inventory', component: OwnerInventory }
 ];
 
 @NgModule({
@@ -25,4 +26,14 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [ItemCreateComponent, ItemListComponent];
+// export const routingComponents = [
+//   ItemCreateComponent,
+//   ItemListComponent,
+//   WelcomeComponent,
+//   LoginComponent,
+//   SignupComponent,
+//   DashboardComponent,
+//   OwnerInventory,
+//   HeaderComponent,
+//   MessagepageComponent,
+// ];
