@@ -1,7 +1,7 @@
-import { Item } from './item.model';
+import { ItemData } from './item.model';
 
 export interface DialogData {
-  itemData: Item;
-  enddate: Date;
-  startdate: Date;
+  itemData: ItemData;
+  endDate: Date;
+  startDate: Date;
 }

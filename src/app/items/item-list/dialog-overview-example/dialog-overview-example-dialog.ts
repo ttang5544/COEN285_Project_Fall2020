@@ -1,15 +1,14 @@
-import { DialogData } from '../../../data-models/dialog-data.model';
-import { Item } from '../../../data-models/item.model';
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ReservationDataService } from '../../../mock-backend/reservation-mock.service';
+import { DialogData } from '../../../@shared/data-models/dialog-data.model';
+import { ReservationDataService } from '../../../app-services/mock-backend/reservation-mock.service';
 
 @Component({
   selector: 'dialog-overview-example-dialog',
   templateUrl: 'dialog-overview-example-dialog.html',
 })
 export class DialogOverviewExampleDialog {
-  reserve: Item;
+  reserve: any;
   category: 'exercise' | 'yard' | 'kitchen';
   name: string;
   description: string;
@@ -30,8 +29,8 @@ export class DialogOverviewExampleDialog {
       this.description = data.itemData.description || '(no content)';
       this.picture = data.itemData.picture || '';
       this.dailyPrice = data.itemData.dailyPrice || null;
-      this.startdate = data.startdate;
-      this.enddate = data.enddate;
+      this.startdate = data.startDate;
+      this.enddate = data.endDate;
       this.reserve = data.itemData;
       const daydiff = Math.abs(this.parseDate(this.enddate).getTime() - this.parseDate(this.startdate).getTime());
       this.estimatedprice = Math.ceil(daydiff / (1000 * 3600 * 24)) * this.reserve.dailyPrice;
@@ -64,10 +63,3 @@ export class DialogOverviewExampleDialog {
   }
 
 }
-  /* // #1 is same as
-postsService: PostsService;
-
-constructor(postService: PostsService) {
-this.postsService = postService;
-}
-*/

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Item } from '../data-models/item.model';
+import { ItemData } from '../../@shared/data-models/item.model';
 
 
-export const mockData1: Item[] = [
+export const mockData1: ItemData[] = [
   {
     itemId: 'ITEM-UserA-0',
     ownerId: 'someOwnerId',
@@ -32,7 +32,7 @@ export const mockData1: Item[] = [
   }
 ];
 
-const mockData2: Item[] = [
+const mockData2: ItemData[] = [
   {
     itemId: 'xxxx111',
     ownerId: 'friendwf@gmail.com',
@@ -58,18 +58,18 @@ const mockData2: Item[] = [
 @Injectable({ providedIn: 'root' })
 
 export class ItemsMockService {
-  private items: Item[] = [];
+  private items: ItemData[] = [];
 
   constructor() {
     this.items = [...mockData1]; // use mock data
   }
 
-  getItems(): Item[] {
+  getItems(): ItemData[] {
     return this.items;
   }
 
   addItem(category: 'kitchen' | 'yard' | 'exercise', name: string, description: string, picture: string, dailyPrice: number) {
-    const newItem: Item = {
+    const newItem: ItemData = {
       itemId: null,
       ownerId: '',
       category,

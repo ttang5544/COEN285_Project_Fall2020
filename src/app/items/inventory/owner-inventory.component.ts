@@ -1,6 +1,6 @@
 import { Component, OnInit, ApplicationRef } from '@angular/core';
-import { Item } from '../../data-models/item.model';
-import { ItemsMockService } from '../../mock-backend/item-mock.service';
+import { ItemData } from '../../@shared/data-models/item.model';
+import { ItemsMockService } from '../../app-services/mock-backend/item-mock.service';
 
 @Component({
   selector: 'owner-inventory',
@@ -9,7 +9,7 @@ import { ItemsMockService } from '../../mock-backend/item-mock.service';
 })
 export class OwnerInventory implements OnInit {
 
-  items: Item[] = [];
+  items: ItemData[] = [];
 
   constructor(public itemsService: ItemsMockService, public appRef: ApplicationRef) { }
 

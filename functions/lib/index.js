@@ -2,14 +2,12 @@
 //  TOP LEVEL CLOUD FUNCTIONS INDEX.TS             ======================
 // ======================================================================
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AddReservationToLists = exports.ManageItemOnLists = exports.SendConfirmationEmail = exports.SetupNewAccount = void 0;
-// import * as admin from 'firebase-admin';
-// admin.initializeApp();
-const auth = require("./auth/index");
+exports.SyncNewReservationToLists = exports.SyncItemToOwnerInventory = exports.CreateNewAccount = void 0;
+// import firebase from 'firebase';  THIS STYLE IMPORT PROVIDES TYPES: firebase.default.database.Query
+// import * as auth from './auth/index';
 const callable = require("./callable/index");
 const fs = require("./firestore/index");
-exports.SetupNewAccount = auth.setupNewAccount;
-exports.SendConfirmationEmail = callable.sendRentalConfirmation;
-exports.ManageItemOnLists = fs.manageItemOnLists;
-exports.AddReservationToLists = fs.addReservationToLists;
+exports.CreateNewAccount = callable.createNewAccount;
+exports.SyncItemToOwnerInventory = fs.syncItemStatusToOwnerInventory;
+exports.SyncNewReservationToLists = fs.syncNewReservationToLists;
 //# sourceMappingURL=index.js.map

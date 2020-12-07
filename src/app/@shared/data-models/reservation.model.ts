@@ -9,12 +9,33 @@ OwnerID			from Item data
 RenterID			from authService.getCurrentUserId()
 */
 
-export interface Reservation {
-  resId?: string;
-  itemID: string;
-  ownerID: string;
-  renterID: string;
-  startdate: Date;
-  enddate: Date;
-  itemDailyPrice: number;
+export interface ReservationInfo {
+  itemId: string;
+  ownerId: string;
+  renterId: string;
+  startDate: Date;
+  endDate: Date;
+  dailyPrice: number;
+}
+
+
+export interface ReservationData {
+  reservationId: string;
+  itemId: string;
+  ownerId: string;
+  renterId: string;
+  startDate: Date;
+  endDate: Date;
+  dailyPrice: number;
+}
+
+
+export interface UserReservationsInfo {
+  owner: string[];
+  renter: string[];
+}
+
+export interface UserReservationsData {
+  owner: ReservationData[];
+  renter: ReservationData[];
 }

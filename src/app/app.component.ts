@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Item } from './data-models/item.model';
+import { ItemData } from './@shared/data-models/item.model';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +8,7 @@ import { Item } from './data-models/item.model';
 })
 export class AppComponent {
   title = 'tech-support-project';
-  storedItems: Item[] = [];
+  storedItems: ItemData[] = [];
 
   onItemAdded(item) {
     this.storedItems.push(item);

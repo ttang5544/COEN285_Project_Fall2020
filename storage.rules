@@ -6,7 +6,8 @@ service firebase.storage {
     // }
     match /users/{uid} {
       // any logged in user can read
-      allow read: if request.auth != null && request.auth.uid == $uid;
+      // allow read: if request.auth != null && request.auth.uid == $uid;
+
     }
   }
 }

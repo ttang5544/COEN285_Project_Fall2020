@@ -3,7 +3,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import firebase from 'firebase';
 import { from, Observable, of, Subject } from 'rxjs';
 import { map, shareReplay, takeUntil } from 'rxjs/operators';
-import { User } from '../../../@shared/data-models/auth-data.model';
+import { UserInfo } from '../../../@shared/data-models/user.model';
+import { FirebaseFunctionsService } from './fb-functions.service';
 
 
 
@@ -15,39 +16,38 @@ import { User } from '../../../@shared/data-models/auth-data.model';
 export class FirebaseAuthService implements OnDestroy {
   private unsubOnDestroy = new Subject<void>();
   loggedIn = false;
-  user: User;
-  currUser$: Observable<User>;
+  userInfo: UserInfo;
+  currUserInfo$: Observable<UserInfo>;
   isAuthenticated$: Observable<boolean>;
 
-  constructor(private afAuth: AngularFireAuth) {
+  constructor(private afAuth: AngularFireAuth, private cfn: FirebaseFunctionsService) {
     this.afAuth.user.pipe(takeUntil(this.unsubOnDestroy))
       .subscribe((user: firebase.User) => {
         if (user) {
           this.loggedIn = true;
-          this.user = {
+          this.userInfo = {
             uid: user.uid,
             email: user.email,
-            displayName: user.displayName
+            displayName: user.displayName,
           };
         } else {
           this.loggedIn = false;
-          this.user = null;
+          this.userInfo = null;
         }
       });
-    this.currUser$ = this.afAuth.user.pipe(
+    this.currUserInfo$ = this.afAuth.user.pipe(
       map((user: firebase.User) => {
         if (user) {
           const currUser = {
             uid: user.uid,
             email: user.email,
             displayName: user.displayName,
-            // claims:
           };
           return currUser;
         }
       }),
       shareReplay(1));
-    this.isAuthenticated$ = this.currUser$.pipe(
+    this.isAuthenticated$ = this.afAuth.user.pipe(
       map((user: firebase.User) => !!user),
       shareReplay(1));
   }
@@ -79,16 +79,19 @@ export class FirebaseAuthService implements OnDestroy {
         message: 'Received invalid argument for request'
       });
     }
-    return from(
-      this.afAuth.createUserWithEmailAndPassword(email, password)
-        .then((cred: firebase.auth.UserCredential) => {
-          if (cred && cred.user) {
-            return cred.user.updateProfile({ displayName: firstName + ' ' + lastName });
-          }
-          throw { code: 'auth/invalid-argument', message: 'Error creating user account' };
-        }).catch((e: firebase.FirebaseError) => {
-          return e;
-        })
-    );
+    // TODO  functions service to call CreateNewAccount
+
+
+    // return from(
+    //   this.afAuth.createUserWithEmailAndPassword(email, password)
+    //     .then((cred: firebase.auth.UserCredential) => {
+    //       if (cred?.user) {
+    //         return cred.user.updateProfile({ displayName: firstName + ' ' + lastName });
+    //       }
+    //       throw { code: 'auth/invalid-argument', message: 'Error creating UserData account' };
+    //     }).catch((e) => {
+    //       return e;
+    //     })
+    // );
   }
 }

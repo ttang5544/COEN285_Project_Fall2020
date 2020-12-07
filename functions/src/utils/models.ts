@@ -1,7 +1,9 @@
 
 export interface Timeblock {
-  start: number;
-  end: number;
+  start: number | Date;
+  end: number | Date;
+  // start: number;
+  // end: number;
 }
 
 
@@ -9,76 +11,34 @@ export interface BackendReservation {
   itemId: string;
   ownerId: string;
   renterId: string;
-  start: number;
-  end: number;
-  price: number;
+  startDate: number | Date;
+  endDate: number | Date;
+  dailyPrice: number;
   reservationId?: string;
 }
 
+
+// TODO - define as classes (maybe merge with ItemData, etc) then firestore class creator function
 export interface BackendItem {
   name: string;
   category: string;
   description: string;
   picture: string;
-  price: number;
+  dailyPrice: number;
   ownerId: string;
-  itemId?: string;
   reservations: string[];
+  itemId?: string;
 }
 
 
-
-
-
-
-
-
-/*
-
-// These samples are intended for Web so this import would normally be
-// done in HTML however using modules here is more convenient for
-// ensuring sample correctness offline.
-// import firebase from 'firebase/app';
-// import 'firebase/auth';
-
-// ==========================================================================================
-// Docs: Snippets in this file are 'general purpose' and are used on more than one docs page
-// ==========================================================================================
-import * as firebase from 'firebase';
-import * as admin from 'firebase-admin';
-import * as functions from 'firebase-functions';
-function makeEmailCredential(email, password) {
-  // [START auth_make_email_credential]
-  var credential = firebase.auth.EmailAuthProvider.credential(email, password);
-  // [END auth_make_email_credential]
+export interface BackendUser {
+  email: string;
+  firstName: string;
+  lastName: string;
+  items: string[];
+  reservations: {
+    owner: string[],
+    renter: string[];
+  };
+  picture?: string;
 }
-
-function signOut() {
-  // [START auth_sign_out]
-  firebase.auth().signOut().then(() => {
-    // Sign-out successful.
-  }).catch((error) => {
-    // An error happened.
-  });
-  // [END auth_sign_out]
-}
-
-
-// TODO CONVERT THIS TO USER ONLINE STATUS/PRESENCE
-function authStateListener() {
-  // [START auth_state_listener]
-  firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      // User is signed in, see docs for a list of available properties
-      // https://firebase.google.com/docs/reference/js/firebase.User
-      var uid = user.uid;
-      // ...
-    } else {
-      // User is signed out
-      // ...
-    }
-  });
-  // [END auth_state_listener]
-}
-
-*/

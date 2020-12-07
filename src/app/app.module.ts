@@ -1,6 +1,6 @@
 
 
-import { CurrencyPipe, CommonModule } from '@angular/common';
+import { CurrencyPipe, CommonModule, AsyncPipe } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -152,6 +152,7 @@ import { DialogOverviewExampleDialog } from './items/item-list/dialog-overview-e
   entryComponents: [DialogOverviewExampleDialog],
   providers: [
     CurrencyPipe,
+    AsyncPipe,
   ],
   bootstrap: [AppComponent]
 })

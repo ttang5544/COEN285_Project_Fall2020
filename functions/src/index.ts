@@ -1,22 +1,21 @@
 //  TOP LEVEL CLOUD FUNCTIONS INDEX.TS             ======================
 // ======================================================================
 
-// import * as admin from 'firebase-admin';
-// admin.initializeApp();
+// import firebase from 'firebase';  THIS STYLE IMPORT PROVIDES TYPES: firebase.default.database.Query
+
+
 
 
 // import * as auth from './auth/index';
 import * as callable from './callable/index';
 import * as fs from './firestore/index';
 
-// export const SetupNewAccount = auth.setupNewAccount;
 
 
 export const CreateNewAccount = callable.createNewAccount;
-export const SendConfirmationEmail = callable.sendRentalConfirmation;
 
 
 
 
-export const ManageItemOnLists = fs.manageItemOnLists;
-export const AddReservationToLists = fs.addReservationToLists;
+export const SyncItemToOwnerInventory = fs.syncItemStatusToOwnerInventory;
+export const SyncNewReservationToLists = fs.syncNewReservationToLists;

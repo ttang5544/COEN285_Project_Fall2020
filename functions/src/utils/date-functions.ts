@@ -17,7 +17,7 @@ export function getDayOfYearForDate(date: Date): number {
   if (monthVal > 1 && isLeapYear(date)) {
     dayOfYear++;
   }
-  console.log(`getDOY() - mn: ${ monthVal }  day: ${ dayVal }  day of year: ${ dayOfYear } `);
+  // console.log(`getDOY() - mn: ${ monthVal }  day: ${ dayVal }  day of year: ${ dayOfYear } `);
   return dayOfYear;
 }
 

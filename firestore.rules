@@ -15,29 +15,22 @@ service cloud.firestore {
     //   - Deletes are not allowed (default)
     match /users/{uid} {
       allow read: if request.auth != null;
-      allow create: if request.auth == $uid; // && request.auth === uid;
-      allow update: if request.auth == $uid
+      allow create: false; // if request.auth == $uid; // && request.auth === uid;
+      allow update: if request.auth.uid == $uid
                     && (request.resource.data.keys() == resource.data.keys())
                     && unchanged("name");
     }
 
 
-    match /items/{uid} {
-      function isValidItemData() {}
+    match /items/{itemId} {
+      allow read: if request.auth.uid == $uid
     }
 
 
 
-    match /reservations/{uid} {
+    match /reservations/{reservationId} {
 
     }
-
-
-
-    match /public/{uid} {
-
-    }
-
 
 
   }

@@ -7,5 +7,29 @@
     "secure": true,
     "email": "tts.scu@gmail.com",
     "password": "tfhaexkfulorphkd"
+  },
+  "templates": {
+    "all": {
+      "welcome": {
+        "subject": "Welcome to ToolTime!",
+        "message": "Thanks for signing up for ToolTime. Your account has successfully been created!"
+      },
+      "confirmation": {
+        "subject": "Your rental has been confirmed!",
+        "message": "Don't forget to meet at the scheduled time"
+      }
+    },
+    "owner": {
+      "newrequest": {
+        "subject": "Rental request approval",
+        "message": "Some text here"
+      }
+    },
+    "renter": {
+      "newrequest": {
+        "subject": "You requested a ToolTime rental!",
+        "message": "Your ToolTime request is awaiting owner approval"
+      }
+    }
   }
 }

@@ -1,22 +1,54 @@
 "use strict";
+//////////////       CALLABLE  INDEX.TS
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.sendRentalConfirmation = void 0;
+exports.createNewAccount = void 0;
 const functions = require("firebase-functions");
+const admin_1 = require("../admin");
+admin_1.initApp();
+const admin = require("firebase-admin");
 const send_email_1 = require("../utils/send-email");
-exports.sendRentalConfirmation = functions.https.onCall((data, context) => {
-    if (!context || !context.auth || !context.auth.token) {
-        return new functions.https.HttpsError('unauthenticated', 'You must be logged in to your account');
+exports.createNewAccount = functions.https.onCall((data, context) => {
+    if (!data || !('email' in data) || !('password' in data) || !('firstName' in data) || !('lastName' in data)) {
+        // validation
+        throw new functions.https.HttpsError('invalid-argument', 'Invalid request');
     }
-    // other validation errors
-    const uid = context.auth.uid || '';
-    const email = data.auth.token.email;
-    const userName = data.userName || '';
-    const itemName = data.itemName || '';
-    const ownerName = data.ownerName || '';
-    return send_email_1.sendEmailMessage(email, uid, userName, 'confirm', itemName, ownerName)
-        .catch((e) => {
-        console.error(e);
-        return new functions.https.HttpsError('cancelled', 'An error occurred while sending the confirmation email');
+    const emailData = data.email;
+    const passwordData = data.password;
+    const firstName = data.firstName;
+    const lastName = data.lastName;
+    return admin.auth().createUser({
+        email: emailData,
+        password: passwordData,
+        displayName: `${data.firstName} ${data.lastName}`,
+    })
+        .then((userRecord) => {
+        console.log('Successfully created new user:', userRecord.uid);
+        return setupUser(userRecord.uid, emailData, firstName, lastName);
+    })
+        .catch((error) => {
+        console.error('Error creating new user:', error);
+        throw new functions.https.HttpsError('failed-precondition', 'CreateNewAccount request encountered an error while setting up the account');
     });
 });
+function setupUser(uid, email, firstName, lastName) {
+    return admin.firestore().collection('users')
+        .doc(uid)
+        .set({
+        email,
+        firstName,
+        lastName,
+        items: [],
+        reservations: {
+            owner: [],
+            renter: []
+        }
+    })
+        .catch((error) => {
+        console.error('ERROR - setupUser - firestore dir writes failed');
+        throw new functions.https.HttpsError('failed-precondition', 'Error - could not complete request');
+    })
+        .then((_) => {
+        return send_email_1.sendWelcomeEmail(email, firstName, uid);
+    });
+}
 //# sourceMappingURL=index.js.map

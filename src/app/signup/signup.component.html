@@ -4,6 +4,7 @@
     <mat-card class="example-card">
       <mat-card-header>
       </mat-card-header>
+
       <mat-card-content>
         <form class="example-form">
           <table class="example-full-width" cellspacing="0">
@@ -42,6 +43,27 @@
             </tr>
           </table>
         </form>
+
+        <div class="course-detail" *ngIf="(fxnObs | async)?.error">
+          <div class="course-field">
+            {{(fxnObs | async)?.error.message}}
+          </div>
+          <div class="course-field">
+            {{(fxnObs | async)?.error.status}}
+          </div>
+          <!-- <div class="course-field">
+            {{( fxnObs | async)?.firstName}}
+          </div>
+          <div class="course-field">
+            {{( fxnObs | async)?.lastName}}
+          </div> -->
+        </div>
+        <div style="width: 500px; height: 500px; background-color: red; z-index: 10000; position: absolute;"
+             *ngIf="errmsg">
+          {{ errmsg }}
+        </div>
+
+
       </mat-card-content>
       <mat-card-actions>
         <button mat-raised-button color="primary" (click)="signUp()">Sign Up</button>
@@ -51,12 +73,3 @@
 </div>
 
 <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
-
-
-<!--
-<app-header></app-header>
-<p>signup text boxes and stuff here</p>
-<nav>
-  <a routerLink="/dashboard" routerLinkActive="active">SIGN UP</a>
-</nav>
- -->

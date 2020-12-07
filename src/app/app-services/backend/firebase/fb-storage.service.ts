@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@angular/core';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { USER_ID } from '../provider-facades/fb-providers';
+import { USER_ID } from '../provider-facades/injected-dependencies.provider';
 
 /*
     sample progress bar html for AngularFireStorage + AngularFireUplaoadTask

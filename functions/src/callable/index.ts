@@ -1,51 +1,63 @@
+//////////////       CALLABLE  INDEX.TS
+
 import * as functions from 'firebase-functions';
-import * as init from '../utils/admin';
-init.initAdmin();
-import { sendEmailMessage } from '../utils/send-email';
+import { initApp } from '../admin';
+initApp();
 import * as admin from 'firebase-admin';
+
+import { sendWelcomeEmail } from '../utils/send-email';
+
 
 
 export const createNewAccount = functions.https.onCall(
   (data, context) => {
-    if (!context?.auth && data && !!data['email'] && !!data['pw'] && !!data['firstName'] && !!data['lastName]']) {
+    if (!data || !('email' in data) || !('password' in data) || !('firstName' in data) || !('lastName' in data)) {
       // validation
-      return new functions.https.HttpsError('invalid-argument', 'Invalid request');
+      throw new functions.https.HttpsError('invalid-argument', 'Invalid request');
     }
+    const emailData = data.email as string;
+    const passwordData = data.password as string;
+    const firstName = data.firstName as string;
+    const lastName = data.lastName as string;
     return admin.auth().createUser({
-      email: data.email,
-      emailVerified: false,
-      password: data.pw,
-      displayName: `${ data.firstName }`,
-      // phoneNumber: '+11234567890',
-      // photoURL: 'http://www.example.com/12345678/photo.png',
-      disabled: false,
+      email: emailData,
+      password: passwordData,
+      displayName: `${ data.firstName } ${ data.lastName }`,
     })
       .then((userRecord) => {
-        // See the UserRecord reference doc for the contents of userRecord.
         console.log('Successfully created new user:', userRecord.uid);
+        return setupUser(userRecord.uid, emailData, firstName, lastName);
       })
       .catch((error) => {
-        console.log('Error creating new user:', error);
-      });
-
-
-  });
-
-export const sendRentalConfirmation = functions.https.onCall(
-  (data, context) => {
-    if (!context || !context.auth || !context.auth.token) {
-      return new functions.https.HttpsError('unauthenticated', 'You must be logged in to your account');
-    }
-    // other validation errors
-    const itemName: string = data.itemName || '';
-    const uid: string = context.auth.uid || '';
-    const email: string = data.auth.token.email;
-    const userName: string = data.userName || '';
-    const ownerName: string = data.ownerName || '';
-
-    return sendEmailMessage('confirm', email, uid, userName, itemName, ownerName)
-      .catch((e) => {
-        console.error(e);
-        return new functions.https.HttpsError('cancelled', 'An error occurred while sending the confirmation email');
+        console.error('Error creating new user:', error);
+        throw new functions.https.HttpsError('failed-precondition', 'CreateNewAccount request encountered an error while setting up the account');
       });
   });
+
+
+
+
+function setupUser(uid: string, email: string, firstName: string, lastName: string): Promise<any> {
+  return admin.firestore().collection('users')
+    .doc(uid)
+    .set({
+      email,
+      firstName,
+      lastName,
+      items: [],
+      reservations: {
+        owner: [],
+        renter: []
+      }
+    })
+    .catch((error) => {
+      console.error('ERROR - setupUser - firestore dir writes failed');
+      throw new functions.https.HttpsError('failed-precondition', 'Error - could not complete request');
+    })
+    .then((_) => {
+      return sendWelcomeEmail(email, firstName, uid);
+    });
+
+
+}
+

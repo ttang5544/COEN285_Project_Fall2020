@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Item } from '../../data-models/item.model';
-import { ItemsMockService } from '../../mock-backend/item-mock.service';
 import { DialogOverviewExampleDialog } from './dialog-overview-example/dialog-overview-example-dialog';
+import { ItemsMockService } from '../../app-services/mock-backend/item-mock.service';
+import { ItemData } from '../../@shared/data-models/item.model';
 
 
 @Component({
@@ -12,7 +12,7 @@ import { DialogOverviewExampleDialog } from './dialog-overview-example/dialog-ov
 })
 
 export class ItemListComponent implements OnInit {
-  items: Item[] = [];
+  items: ItemData[] = [];
 
   startdate: Date;
   enddate: Date;

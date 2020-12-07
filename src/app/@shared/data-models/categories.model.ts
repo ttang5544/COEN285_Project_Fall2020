@@ -1,9 +1,18 @@
+
 interface item_cate {
- value: string;
+  value: string;
 }
 
 export let categories: item_cate[] = [
-  {value: 'music'},
-  {value: 'kitchen'},
-  {value: 'sports'}
+  { value: 'music' },
+  { value: 'kitchen' },
+  { value: 'sports' }
+];
+
+
+export const CATEGORY_LABELS: string[] = [
+  'kitchen',
+  'garden',
+  'construction',
+  'plumbing'
 ];

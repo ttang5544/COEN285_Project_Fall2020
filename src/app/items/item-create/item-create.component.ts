@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ItemsMockService } from '../../mock-backend/item-mock.service';
-import { categories } from '../../data-models/categories.model';
+import { categories } from '../../@shared/data-models/categories.model';
+import { ItemsMockService } from '../../app-services/mock-backend/item-mock.service';
 
 @Component({
   selector: 'app-item-create',

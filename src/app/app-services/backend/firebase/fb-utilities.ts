@@ -1,33 +1,15 @@
 import { Observable } from 'rxjs';
-import { User } from '../../../@shared/data-models/auth-data.model';
-import { Item } from '../../../@shared/data-models/item.model';
+import { UserData } from '../../../@shared/data-models/user.model';
+import { ItemData } from '../../../@shared/data-models/item.model';
 import { ResultResponse } from '../../../@shared/data-models/message-result.modle';
-import { Reservation } from '../../../@shared/data-models/reservation.model';
+import { ReservationData } from '../../../@shared/data-models/reservation.model';
 import { AngularFirestore } from '@angular/fire/firestore';
 
 
-export type RecordType = User | Item | Reservation;
+export type RecordType = UserData | ItemData | ReservationData;
 
 
-// RECORD TYPES: user   item     reservation
-// export abstract class RecordService<T extends RecordType> {
-//   abstract getRecord(itemId: string): T;
-//   abstract setRecord(itemId: string, record: T);
-//   abstract updateRecord(itemId: string, updates: T);
-//   // abstract deleteRecord(itemId: string);
-// }
-
-export abstract class RecordService<T = RecordType> {
-  // export interface RecordService<T = User | Item | Reservation> {
-  constructor(protected firestore: AngularFirestore) { }
-
-  abstract getRecord(id: string): Observable<T>;
-  abstract setRecord(id: string, record: T): Observable<ResultResponse>;
-  abstract updateRecord(id: string, updates: T): Observable<ResultResponse>;
-  // abstract deleteRecord(itemId: string);
-}
-
-
+export type MutableUserData = Pick<UserData, 'items' | 'reservations'>;
 
 
 
@@ -67,3 +49,5 @@ export abstract class RecordService<T = RecordType> {
     .withConverter(cityConverter)
     .set(new City("Los Angeles", "CA", "USA"));
 */
+
+
