@@ -20,7 +20,7 @@ export interface ReservationInfo {
 
 
 export interface ReservationData {
-  reservationId: string;
+  reservationId?: string;
   itemId: string;
   ownerId: string;
   renterId: string;

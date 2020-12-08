@@ -7,6 +7,7 @@ export let categories: item_cate[] = [
   { value: 'music' },
   { value: 'kitchen' },
   { value: 'sports' },
+  { value: 'electronics'},
   { value: 'other'}
 ];
 

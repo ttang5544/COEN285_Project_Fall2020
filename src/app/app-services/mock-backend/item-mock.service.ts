@@ -9,9 +9,9 @@ export const mockData1: ItemData[] = [
     ownerId: 'someOwnerId',
     category: 'yard',
     name: 'hammer',
-    description: 'bbbbb',
+    description: 'A wooden Craftsman hammer from 1990. Very solid.',
     picture: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Tools-hammer.svg/120px-Tools-hammer.svg.png',
-    dailyPrice: 5.5
+    dailyPrice: 4
   },
   {
     reservationIds: '112',
@@ -19,9 +19,9 @@ export const mockData1: ItemData[] = [
     ownerId: 'someOwnerId-B',
     category: 'yard',
     name: 'shovel',
-    description: 'post2post2post2post2',
+    description: 'A shovel that is good for dirt. Not a show shovel.',
     picture: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Shovel.svg/120px-Shovel.svg.png',
-    dailyPrice: 55.75
+    dailyPrice: 8
   },
   {
     reservationIds: '111',
@@ -29,9 +29,9 @@ export const mockData1: ItemData[] = [
     ownerId: 'someOwnerId-C',
     category: 'kitchen',
     name: 'drill',
-    description: '33bbb',
-    picture: 'trowel.jpg',
-    dailyPrice: 125.99
+    description: 'An electric drill. Battery life 5 hours. Drill bits and battery included in rental.',
+    picture: 'https://i.imgur.com/YjVmgQX.jpeg',
+    dailyPrice: 40.99
   }
 ];
 
