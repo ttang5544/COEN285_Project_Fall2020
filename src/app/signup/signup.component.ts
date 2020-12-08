@@ -32,35 +32,35 @@ export class SignupComponent {
   errmsg: string;
   showMsg = false;
 
-  // constructor(private router: Router, public userAuth: FirebaseAuthService) { }
-  constructor(private router: Router, private fxns: AngularFireFunctions) { }
+  constructor(private router: Router, public userAuth: FirebaseAuthService) { }
+  // constructor(private router: Router, private fxns: AngularFireFunctions) { }
 
   signUp() {
-    // this.userAuth.signup(this.email, this.password, this.firstname, this.lastname);
-    // this.router.navigate(['/item-list-path']);
-    console.log(this.email + this.password + this.firstname + this.lastname);
-    const CreateNewAccount = this.fxns.httpsCallable('CreateNewAccount');
-    const fxnObs = CreateNewAccount({
-      data: {
-        email: 'deepfrydktns@gmail.com',
-        password: '123456aa',
-        firstName: 'butt',
-        lastName: 'muncher'
-      }
-    });
-    this.fxnObs = fxnObs;
-    console.log('EXECUTING CLOUD FXN');
-    const sub = fxnObs.subscribe(
-      (result) => {
-        console.log(`   GOT  RESULT: `);
-        console.log(result);
-      },
-      (error) => {
-        console.log(`   GOT ERROR:  ${ error.message }  ${ error.code ?? error.status }`);
-        console.log(error);
-        this.errmsg = error.message;
-      }
-    );
+    this.userAuth.signup(this.email, this.password, this.firstname, this.lastname);
+
+    // console.log(this.email + this.password + this.firstname + this.lastname);
+    // const CreateNewAccount = this.fxns.httpsCallable('CreateNewAccount');
+    // const fxnObs = CreateNewAccount({
+    //   data: {
+    //     email: 'deepfrydktns@gmail.com',
+    //     password: '123456aa',
+    //     firstName: 'butt',
+    //     lastName: 'muncher'
+    //   }
+    // });
+    // this.fxnObs = fxnObs;
+    // console.log('EXECUTING CLOUD FXN');
+    // const sub = fxnObs.subscribe(
+    //   (result) => {
+    //     console.log(`   GOT  RESULT: `);
+    //     console.log(result);
+    //   },
+    //   (error) => {
+    //     console.log(`   GOT ERROR:  ${ error.message }  ${ error.code ?? error.status }`);
+    //     console.log(error);
+    //     this.errmsg = error.message;
+    //   }
+    // );
   }
 
 }

@@ -47,24 +47,24 @@
           </table>
         </form>
 
-        <div class="course-detail" *ngIf="(fxnObs | async)?.error">
+        <!-- <div class="course-detail" *ngIf="(fxnObs | async)?.error">
           <div class="course-field">
             {{(fxnObs | async)?.error.message}}
           </div>
           <div class="course-field">
             {{(fxnObs | async)?.error.status}}
           </div>
-          <!-- <div class="course-field">
+        <div class="course-field">
             {{( fxnObs | async)?.firstName}}
           </div>
           <div class="course-field">
             {{( fxnObs | async)?.lastName}}
-          </div> -->
-        </div>
-        <div style="width: 500px; height: 500px; background-color: red; z-index: 10000; position: absolute;"
-             *ngIf="errmsg">
-          {{ errmsg }}
-        </div>
+          </div>
+  </div> -->
+        <!-- <div style="width: 500px; height: 500px; background-color: red; z-index: 10000; position: absolute;"
+       *ngIf="errmsg">
+    {{ errmsg }}
+  </div> -->
 
 
       </mat-card-content>

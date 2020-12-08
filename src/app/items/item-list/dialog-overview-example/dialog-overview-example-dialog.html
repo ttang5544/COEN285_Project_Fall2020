@@ -1,20 +1,29 @@
 <h1 mat-dialog-title>Summary of your rental request</h1>
 <div mat-dialog-content>
 
-  <img height = "200px" [src]="this.picture" />
-      <br />
-  Category: {{ this.category }}
-  <br />
-  Price: $ {{ this.dailyPrice }}
-  <br />
-  Description: {{ this.description }}
-  <br />
-  Rental starts at: {{this.startdate}}
-  <br />
-  Rental ends at: {{this.enddate}}
-  <br />
-  Estimated Total Cost (in dollars): {{this.estimatedprice}}
-  <br />
+
+  <div *ngIf="!showMsg">
+    <img height="200px" [src]="this.picture" />
+    <br />
+    Category: {{ this.category | titlecase }}
+    <br />
+    Price: $ {{ this.dailyPrice }}
+    <br />
+    Description: {{ this.description }}
+    <br />
+    Rental starts at: {{this.startdate}}
+    <br />
+    Rental ends at: {{this.enddate}}
+    <br />
+    Estimated Total Cost $: {{this.estimatedprice}}
+    <br />
+  </div>
+
+  <div *ngIf="showMsg">
+    Your rental request has been submitted for approval!
+  </div>
+
+
 
 </div>
 <div mat-dialog-actions>

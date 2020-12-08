@@ -1,10 +1,10 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 import firebase from 'firebase';
 import { from, Observable, of, Subject } from 'rxjs';
 import { map, shareReplay, takeUntil } from 'rxjs/operators';
-import { UserInfo } from '../../../@shared/data-models/user.model';
-import { FirebaseFunctionsService } from './fb-functions.service';
+import { UserData, UserInfo } from '../../../@shared/data-models/user.model';
 
 
 
@@ -20,7 +20,7 @@ export class FirebaseAuthService implements OnDestroy {
   currUserInfo$: Observable<UserInfo>;
   isAuthenticated$: Observable<boolean>;
 
-  constructor(private afAuth: AngularFireAuth, private cfn: FirebaseFunctionsService) {
+  constructor(private afAuth: AngularFireAuth, private router: Router) {
     this.afAuth.user.pipe(takeUntil(this.unsubOnDestroy))
       .subscribe((user: firebase.User) => {
         if (user) {
@@ -69,29 +69,30 @@ export class FirebaseAuthService implements OnDestroy {
   }
 
   logout() {
-    return this.afAuth.signOut();
+    return this.afAuth.signOut()
+      .catch((e) => { })
+      .then(_ => this.router.navigate(['/login']));
+
   }
 
-  signup(email: string, password: string, firstName: string, lastName: string): Observable<any> {
-    if (!email || !password || !firstName || !lastName) {
-      return of({
-        code: 'auth/argument-error',
-        message: 'Received invalid argument for request'
-      });
-    }
-    // TODO  functions service to call CreateNewAccount
+  signup(email: string, password: string, firstName: string, lastName: string) {
+    // if (!email || !password || !firstName || !lastName) {
+    //   return of({
+    //     code: 'auth/argument-error',
+    //     message: 'Received invalid argument for request'
+    //   });
+    // }
+    // // TODO  functions service to call CreateNewAccount
 
 
-    // return from(
-    //   this.afAuth.createUserWithEmailAndPassword(email, password)
-    //     .then((cred: firebase.auth.UserCredential) => {
-    //       if (cred?.user) {
-    //         return cred.user.updateProfile({ displayName: firstName + ' ' + lastName });
-    //       }
-    //       throw { code: 'auth/invalid-argument', message: 'Error creating UserData account' };
-    //     }).catch((e) => {
-    //       return e;
-    //     })
-    // );
+
+    this.afAuth.createUserWithEmailAndPassword(email, password)
+      .then((cred: firebase.auth.UserCredential) => {
+        if (cred?.user) {
+          return cred.user.updateProfile({ displayName: firstName + ' ' + lastName });
+        }
+      }).catch((e) => {
+        // return e;
+      }).then((_) => this.router.navigate(['/dashboard']));
   }
 }

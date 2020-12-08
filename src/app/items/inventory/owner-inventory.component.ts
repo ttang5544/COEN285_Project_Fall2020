@@ -1,8 +1,6 @@
 import { Component, OnInit, ApplicationRef } from '@angular/core';
 import { ItemData } from '../../@shared/data-models/item.model';
-import { ItemsMockService } from '../../app-services/mock-backend/item-mock.service';
-import { Router } from '@angular/router';
-
+import { CentralDataService } from '../../app-services/mock-backend/c/central-data.service';
 
 @Component({
   selector: 'owner-inventory',
@@ -13,23 +11,25 @@ export class OwnerInventory implements OnInit {
 
   items: ItemData[] = [];
 
-  constructor(public itemsService: ItemsMockService, public appRef: ApplicationRef, private router: Router) { }
+  constructor(public cds: CentralDataService, public appRef: ApplicationRef) { }
+  // constructor(public itemsService: ItemsMockService, public appRef: ApplicationRef) { }
 
   ngOnInit() {
-    this.items = [...this.itemsService.getItems()];
+    this.items = [...this.cds.getOwnerItems()];
   }
 
-  removeRental(i) {
-
-    let msger = `Are you sure you want to remove the ${ this.items[i].name }`;
+  removeItem(index) {
+    const item = this.items[index];
+    let msger = `Are you sure you want to remove the ${ this.items[index].name }`;
     let remove = confirm(msger);
 
     if (remove) {
-      this.itemsService.removeItem(i);
+      // this.cds.removeItem(index);
+      this.cds.removeItem(item.itemId);
       this.appRef.tick();
     }
 
-    this.router.navigate(['/item-list-path']);
-
+    //for testing
+    console.log(this.items);
   }
 }

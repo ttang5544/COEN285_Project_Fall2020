@@ -1,11 +1,14 @@
 <mat-toolbar color="primary">
   ToolTime
-  <div fxFlex></div><nav>
-    <a routerLink="/item-list-path" routerLinkActive="active">MARKET PLACE</a>
-    <a routerLink="/item-create-path" routerLinkActive="active">ADD AN ITEM</a>
-    <a routerLink="/owner-inventory" routerLinkActive="active">YOUR ITEMS</a>
+  <div fxFlex></div>
+  <nav>
+    <a style="background-color: transparent;" routerLink="/item-list-path" routerLinkActive="active">MARKET PLACE</a>
+    <a style="background-color: transparent;" routerLink="/item-create-path" routerLinkActive="active">ADD AN ITEM</a>
+    <a style="background-color: transparent;" routerLink="/owner-inventory" routerLinkActive="active">YOUR ITEMS</a>
+    <button mat-button (click)="logout()">Logout</button>
   </nav>
-  <button routerLink="/app-messagepage-component" mat-icon-button color="accent" matBadge="2" matBadgePosition="after"
+  <button *ngIf="" routerLink="/app-messagepage-component" mat-icon-button color="accent" [matBadge]="num"
+          matBadgePosition="after"
           matBadgeColor="warn">
     <mat-icon>speaker_notes</mat-icon>
   </button>
@@ -15,4 +18,3 @@
   <a routerLink="/item-create-path" routerLinkActive="active">POST YOUR ITEMS</a>
   <a routerLink="/owner-inventory" routerLinkActive="active">YOUR ITEMS</a>
 </nav> -->
-<router-outlet></router-outlet>

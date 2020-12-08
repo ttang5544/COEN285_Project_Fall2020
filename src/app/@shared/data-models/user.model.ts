@@ -13,13 +13,14 @@ export interface UserInfo {
 
 // User Data as it is in backend
 export interface UserData {
+  uid?: string;
   email: string;
   firstName: string;
   lastName: string;
   items: string[];  // itemIds
   picture?: string;
-  reservations: {   // reservationIds
-    owner: string[];
-    renter: string[];
+  reservations?: {   // reservationIds
+    owner?: string[];
+    renter?: string[];
   };
 }
