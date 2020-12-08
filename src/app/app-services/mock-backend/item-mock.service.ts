@@ -4,6 +4,7 @@ import { ItemData } from '../../@shared/data-models/item.model';
 
 export const mockData1: ItemData[] = [
   {
+    reservationIds: '113',
     itemId: 'ITEM-UserA-0',
     ownerId: 'someOwnerId',
     category: 'yard',
@@ -13,6 +14,7 @@ export const mockData1: ItemData[] = [
     dailyPrice: 5.5
   },
   {
+    reservationIds: '112',
     itemId: 'ITEM-BB-10',
     ownerId: 'someOwnerId-B',
     category: 'yard',
@@ -22,6 +24,7 @@ export const mockData1: ItemData[] = [
     dailyPrice: 55.75
   },
   {
+    reservationIds: '111',
     itemId: 'ITEM-CCC-999',
     ownerId: 'someOwnerId-C',
     category: 'kitchen',

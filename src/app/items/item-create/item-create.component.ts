@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { categories } from '../../@shared/data-models/categories.model';
 import { ItemsMockService } from '../../app-services/mock-backend/item-mock.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-item-create',
@@ -14,7 +15,7 @@ export class ItemCreateComponent {
   url;
   cates = categories;
 
-  constructor(public itemsService: ItemsMockService) { }
+  constructor(private router: Router, public itemsService: ItemsMockService) { }
 
   selectFile(event) {
     if (!event.target.files[0] || event.target.files[0].length === 0) {
@@ -42,5 +43,6 @@ export class ItemCreateComponent {
     if (form.invalid) { return; }
     this.itemsService.addItem(form.value.cate, form.value.title, form.value.content, this.url, form.value.dayprice);
     form.resetForm();
+    this.router.navigate(['/item-list-path']);
   }
 }
