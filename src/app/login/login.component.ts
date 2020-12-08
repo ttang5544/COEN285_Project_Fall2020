@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     this.userAuth.login(email, password)
       .then((r) => {
         console.log('successfully logged in');
-        this.router.navigate(['/item-list-path']);
+        this.router.navigate(['/dashboard']);
       })
       .catch((e) => {
         console.error('invalid login', e);

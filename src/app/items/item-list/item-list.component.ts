@@ -30,8 +30,8 @@ export class ItemListComponent implements OnInit {
       width: '400px',
       data: {
         itemData: this.items[index],
-        startdate: this.startdate,
-        enddate: this.enddate
+        startDate: this.startdate,
+        endDate: this.enddate
       }
     });
 

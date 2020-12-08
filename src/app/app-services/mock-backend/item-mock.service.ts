@@ -35,26 +35,26 @@ export const mockData1: ItemData[] = [
   }
 ];
 
-const mockData2: ItemData[] = [
-  {
-    itemId: 'xxxx111',
-    ownerId: 'friendwf@gmail.com',
-    category: 'yard',
-    name: 'shovel',
-    description: 'this is a good shovel',
-    picture: 'shovel.jpg',
-    dailyPrice: 20
-  },
-  {
-    itemId: 'xxxx000',
-    ownerId: 'fewf@gmail.com',
-    category: 'kitchen',
-    name: 'hammer',
-    description: 'this is a good hammer',
-    picture: 'hammer.png',
-    dailyPrice: 10
-  }
-];
+// const mockData2: ItemData[] = [
+//   {
+//     itemId: 'xxxx111',
+//     ownerId: 'friendwf@gmail.com',
+//     category: 'yard',
+//     name: 'shovel',
+//     description: 'this is a good shovel',
+//     picture: 'shovel.jpg',
+//     dailyPrice: 20
+//   },
+//   {
+//     itemId: 'xxxx000',
+//     ownerId: 'fewf@gmail.com',
+//     category: 'kitchen',
+//     name: 'hammer',
+//     description: 'this is a good hammer',
+//     picture: 'hammer.png',
+//     dailyPrice: 10
+//   }
+// ];
 
 
 
@@ -79,7 +79,8 @@ export class ItemsMockService {
       name,
       description,
       picture,
-      dailyPrice
+      dailyPrice,
+      reservationIds: null   // for fixing compiling error
     };
     this.items.push(newItem);
   }

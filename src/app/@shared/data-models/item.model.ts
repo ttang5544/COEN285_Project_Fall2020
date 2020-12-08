@@ -18,7 +18,7 @@ export interface ItemData {
   category: 'kitchen' | 'yard' | 'exercise';
   name: string;
   description: string;
-  reservationIds: string[];
+  reservationIds: string;
   dailyPrice: number;
   picture?: string;
 }

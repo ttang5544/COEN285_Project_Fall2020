@@ -1,6 +1,8 @@
 import { Component, OnInit, ApplicationRef } from '@angular/core';
 import { ItemData } from '../../@shared/data-models/item.model';
 import { ItemsMockService } from '../../app-services/mock-backend/item-mock.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'owner-inventory',
@@ -11,7 +13,7 @@ export class OwnerInventory implements OnInit {
 
   items: ItemData[] = [];
 
-  constructor(public itemsService: ItemsMockService, public appRef: ApplicationRef) { }
+  constructor(public itemsService: ItemsMockService, public appRef: ApplicationRef, private router: Router) { }
 
   ngOnInit() {
     this.items = [...this.itemsService.getItems()];
@@ -27,7 +29,7 @@ export class OwnerInventory implements OnInit {
       this.appRef.tick();
     }
 
-    //for testing
-    console.log(this.items);
+    this.router.navigate(['/item-list-path']);
+
   }
 }
