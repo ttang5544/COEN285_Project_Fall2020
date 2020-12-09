@@ -17,7 +17,7 @@ export interface UserData {
   email: string;
   firstName: string;
   lastName: string;
-  items: string[];  // itemIds
+  items?: string[];  // itemIds
   picture?: string;
   reservations?: {   // reservationIds
     owner?: string[];

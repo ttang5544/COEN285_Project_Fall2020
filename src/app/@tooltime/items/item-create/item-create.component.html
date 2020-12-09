@@ -1,0 +1,39 @@
+<header></header>
+<br>
+<h1>Add an Item</h1>
+<mat-card>
+  <form (submit)="onAddItem(itemForm)" #itemForm="ngForm">
+    <mat-form-field>
+      <input matInput type="text" name="title" placeholder="Item Name" ngModel required #title="ngModel">
+      <mat-error *ngIf="title.invalid">Plese enter something</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <textarea matInput rows="6" name="content" placeholder="Item Description" ngModel required #content="ngModel">
+     </textarea>
+      <mat-error *ngIf="content.invalid">Plese enter something</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-label>Please select a Category for your item</mat-label>
+      <mat-select MatInput ngModel name="cate" required #cate="ngModel">
+        <mat-option *ngFor="let cate of cates" [value]="cate.value">
+          {{cate.value}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+    <h4>Upload the image of your item</h4>
+    <div><img [src]="url" *ngIf="url"></div>
+    <input type="file" (change)="selectFile($event)" accept=",png,.jpg">
+    <hr>
+
+    <label>Price per day (in dollars): </label>
+    <input type="number" MatInput ngModel name="dayprice" required #dayprice="ngModel">
+    <!-- <mat-error *ngIf="dayprice.invalid">Please enter a price</mat-error> -->
+    <br>
+    <br>
+    <button mat-raised-button color="primary" type="submit">Add Items
+    </button>
+  </form>
+</mat-card>

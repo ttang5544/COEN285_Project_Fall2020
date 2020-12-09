@@ -1,14 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { FirebaseAuthService } from '../app-services/backend/firebase/fb-auth.service';
+import { AuthService } from '../@providers/service-interfaces';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
-  // email = new FormControl('', [Validators.required, Validators.email]);
+export class LoginComponent {
   email: string;
   password: string;
   hide = true;
@@ -20,19 +19,12 @@ export class LoginComponent implements OnInit {
   //
   //   return this.email.hasError('email') ? 'Not a valid email' : '';
   // }
-  constructor(private router: Router, private userAuth: FirebaseAuthService) { }
-
-  ngOnInit(): void {
-  }
+  constructor(private router: Router, private userAuth: AuthService) { }
 
   login(email: string, password: string) {
     this.userAuth.login(email, password)
-      .then((r) => {
-        console.log('successfully logged in');
-        this.router.navigate(['/dashboard']);
-      })
       .catch((e) => {
-        console.error('invalid login', e);
+        alert(e.message);
       });
   }
 

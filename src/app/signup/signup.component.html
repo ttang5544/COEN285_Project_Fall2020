@@ -35,8 +35,7 @@
             <tr>
               <td>
                 <mat-form-field>
-                  <input placeholder="Password" matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="password"
-                         name="password">
+                  <input placeholder="Password" matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="password" name="password">
                   <!-- <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
                           [attr.aria-pressed]="hide">
                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -46,26 +45,6 @@
             </tr>
           </table>
         </form>
-
-        <!-- <div class="course-detail" *ngIf="(fxnObs | async)?.error">
-          <div class="course-field">
-            {{(fxnObs | async)?.error.message}}
-          </div>
-          <div class="course-field">
-            {{(fxnObs | async)?.error.status}}
-          </div>
-        <div class="course-field">
-            {{( fxnObs | async)?.firstName}}
-          </div>
-          <div class="course-field">
-            {{( fxnObs | async)?.lastName}}
-          </div>
-  </div> -->
-        <!-- <div style="width: 500px; height: 500px; background-color: red; z-index: 10000; position: absolute;"
-       *ngIf="errmsg">
-    {{ errmsg }}
-  </div> -->
-
 
       </mat-card-content>
       <mat-card-actions>
