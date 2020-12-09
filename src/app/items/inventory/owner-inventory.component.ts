@@ -1,4 +1,4 @@
-import { Component, OnInit, ApplicationRef } from '@angular/core';
+import { Component, OnInit, ApplicationRef, DoCheck } from '@angular/core';
 import { ItemData } from '../../@shared/data-models/item.model';
 import { CentralDataService } from '../../app-services/mock-backend/c/central-data.service';
 
@@ -7,16 +7,21 @@ import { CentralDataService } from '../../app-services/mock-backend/c/central-da
   templateUrl: './owner-inventory.component.html',
   styleUrls: []
 })
-export class OwnerInventory implements OnInit {
+export class OwnerInventory implements OnInit, DoCheck {
 
   items: ItemData[] = [];
 
-  constructor(public cds: CentralDataService, public appRef: ApplicationRef) { }
+  constructor(public cds: CentralDataService) { }
   // constructor(public itemsService: ItemsMockService, public appRef: ApplicationRef) { }
 
   ngOnInit() {
     this.items = [...this.cds.getOwnerItems()];
   }
+  ngDoCheck() {
+    this.items = [...this.cds.getOwnerItems()];
+  }
+
+
 
   removeItem(index) {
     const item = this.items[index];
@@ -26,10 +31,10 @@ export class OwnerInventory implements OnInit {
     if (remove) {
       // this.cds.removeItem(index);
       this.cds.removeItem(item.itemId);
-      this.appRef.tick();
+      // this.appRef.tick();
     }
 
     //for testing
-    console.log(this.items);
+    console.log('OWNER INVENTORY  ' + item.name + '  ' + item.itemId);
   }
 }

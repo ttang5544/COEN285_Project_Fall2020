@@ -22,11 +22,12 @@ export class CentralDataService {
   reservations: ReservationData[] = reservations;
 
 
+
   currentUserData: UserData;
 
   // constructor(@Inject(USER_ID) private userId: string) {
   constructor(@Optional() @Inject(USER_INFO) private userInfo: UserInfo) {
-    this.currentUserData = {
+    const udata: UserData = {
       uid: `${ userInfo?.uid ? userInfo.uid : '77777' }`,
       email: `${ userInfo?.email ? userInfo.email : 'bbbb@cccc.com' }`,
       firstName: `${ userInfo?.displayName ? userInfo.displayName : 'Jerry' }`,
@@ -38,16 +39,24 @@ export class CentralDataService {
         renter: []
       }
     };
-    this.users.push(this.currentUserData);
+    this.users.push(udata);
+    this.currentUserData = { ...udata };
+    // console.log(this.users);
   }
 
 
 
 
   getOwnerItems(): ItemData[] {
-    let itemRefs = this.currentUserData.items;
-    if (itemRefs?.length > 0) {
-      return itemRefs.map((itemRef) => this.items.find(item => item.itemId === itemRef));
+    const itemRefs = [...this.users[this.getIndexOfUser()].items];
+    // let itemRefs = [...this.currentUserData.items];
+    console.log('getOnwerItems ');
+    console.log(itemRefs);
+
+    if (itemRefs.length > 0) {
+      let a = itemRefs.map((itemRef) => this.items.find(item => item.itemId === itemRef));
+      console.log(a);
+      return a;
     }
     return [];
   }
@@ -115,8 +124,9 @@ export class CentralDataService {
 
   // for owner add new item to inventory
   addItem(category: 'music' | 'kitchen' | 'sports' | 'electronics' | 'yard' | 'other', name: string, description: string, picture: string, dailyPrice: number) {
+    const newItemId = this.makeId('item');
     const newItem: ItemData = {
-      itemId: this.makeId('item'),
+      itemId: newItemId,
       ownerId: this.currentUserData.uid,
       category,
       name,
@@ -126,11 +136,22 @@ export class CentralDataService {
       reservationIds: []   // for fixing compiling error
     };
     this.items.push(newItem);
-    this.currentUserData.items.push(newItem.itemId);
+
+
+    const userIndex = this.getIndexOfUser();
+    if (userIndex >= 0) {
+      this.users[userIndex].items.push(newItemId);
+      // this.currentUserData.items.push(newItem.itemId);
+    }
+    console.log(`addItem -  userIndex: ${ userIndex }`);
+    console.log(this.users);
+    console.log(this.items);
+    console.log(this.reservations);
   }
 
   // for owner remove item from marketplace   (takes out of items[] and user.items[])
   removeItem(itemId: string) {
+    const userIndex = this.getIndexOfUser();
     // this.items.splice(index, 1);
     // this.currentUserData.items.splice(index);
 
@@ -146,12 +167,20 @@ export class CentralDataService {
       this.items.splice(itemIndex, 1);
 
       // remove from user.items
-      const userItems = [...this.currentUserData.items];
+      const userItems = [...this.users[userIndex].items];
       if (userItems?.length > 0) {
-        const ind = userItems.indexOf(itemId);
-        this.currentUserData.items.splice(ind, 1);
+        userItems.filter((v, i) => v !== itemId);
+        const userIndex = this.getIndexOfUser();
+        this.users[userIndex].items = [...userItems, itemId];
+        // const ind = userItems.indexOf(itemId);
+        // this.currentUserData.items.splice(ind, 1);
       }
     }
+    console.log('removeitem - item id' + itemId);
+    console.log(this.users);
+    console.log(this.items);
+    console.log(this.reservations);
+
   }
 
 
@@ -159,10 +188,23 @@ export class CentralDataService {
 
   makeId(src: 'item' | 'res'): string {
     if (src === 'item') {
-      return `${ src }_${ this.icount++ }`;
+      this.icount++;
+      return `${ src }_x_${ this.icount }`;
     } else {
-      return `${ src }_${ this.rcount++ }`;
+      this.rcount++;
+      return `${ src }_x_${ this.rcount }`;
     }
   }
+
+  getIndexOfUser() {
+    for (let [ind, user] of this.users.entries()) {
+      if (user.uid === this.currentUserData.uid) {
+        return ind;
+      }
+    }
+    return;
+  }
+
+
 
 }

@@ -53,7 +53,7 @@ export class DialogOverviewExampleDialog {
     this.cds.addReservation(this.startdate, this.enddate, this.reserve.itemId, this.reserve.dailyPrice, this.data.itemData.ownerId ?? '', this.cds.currentUserData.uid);
     this.showMsg = true;
     setTimeout(() => {
-      this.showMsg = false;
+      // this.showMsg = false;
       this.dialogRef.close();
     }
       , 2500);

@@ -71,7 +71,7 @@ export const items: ItemData[] = [
     itemId: 'item_2',
     ownerId: '22222',
     category: 'other',
-    name: 'shovel',
+    name: 'tape measure',
     description: 'tape measure it love you long time',
     reservationIds: ['res_2_3'],
     dailyPrice: 33.33,
