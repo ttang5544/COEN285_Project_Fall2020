@@ -40,16 +40,20 @@ export class FirebaseFirestoreService extends DatabaseService {
     }
   }
 
-  setRecord<T>(data: T, root: string, key?: string) { // : Observable<any> {
+  setRecord<T>(data: T, root: string, key: string): Promise<void> {
     if (isNilOrEmptyObject(data) || root === 'users' || data.hasOwnProperty('email')) {
       return;
     }
     const d = deleteProps(data, delkeys[root]);
-    return this.afs.collection(root).add(data);  // error handle returned promise
+    return this.afs.collection(root).doc(key).set(data);
   }
 
   updateRecord<T>(data: Partial<T>, root: string, key: string) {
     return this.afs.collection(root).doc(key).update(data);
+  }
+
+  deleteRecord<T>(key: string, root: string) {
+    return this.afs.collection(root).doc(key).delete();
   }
 
 }

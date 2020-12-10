@@ -1,5 +1,3 @@
-
-
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './@tooltime/dashboard/dashboard.component';
@@ -8,6 +6,7 @@ import { OwnerInventory } from './@tooltime/items/inventory/owner-inventory.comp
 import { ItemCreateComponent } from './@tooltime/items/item-create/item-create.component';
 import { ItemListComponent } from './@tooltime/items/item-list/item-list.component';
 import { MessagepageComponent } from './@tooltime/messagepage/messagepage.component';
+import { UserDataResolver } from './@tooltime/user-data-resolver';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { WelcomeComponent } from './welcome/welcome.component';
@@ -21,7 +20,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   {
-    path: '', component: HeaderComponent, children: [
+    path: '', component: HeaderComponent, resolve: { udata: UserDataResolver }, children: [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'item-create-path', component: ItemCreateComponent },
       { path: 'item-list-path', component: ItemListComponent },

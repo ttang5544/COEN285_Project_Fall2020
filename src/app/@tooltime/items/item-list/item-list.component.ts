@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ItemData } from '../../../@shared/data-models/item.model';
-import { CentralDataService } from '../../../@shared/mock-backend/central-data.service';
+import { CentralDataService } from '../../../@shared/mock-backend/test-data.service';
+import { AppServiceFacade } from '../../service-facade.service';
 import { DialogOverviewExampleDialog } from './dialog-overview-example/dialog-overview-example-dialog';
 
 
@@ -17,10 +18,10 @@ export class ItemListComponent implements OnInit {
   startdate: Date;
   enddate: Date;
 
-  constructor(public cds: CentralDataService, public dialog: MatDialog) { }  // #1
+  constructor(public sf: AppServiceFacade, public dialog: MatDialog) { }  // #1
 
   ngOnInit() {
-    this.items = [...this.cds.getItems()];
+    this.items = [...this.sf.getItems()];
     this.startdate = new Date();
     this.enddate = new Date();
   }

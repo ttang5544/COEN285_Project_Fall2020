@@ -29,7 +29,6 @@ const routeComponents = [
   ],
   imports: [
     SharedModule,
-    // RouterModule,
   ],
   exports: [
     ...routeComponents

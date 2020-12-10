@@ -1,9 +1,7 @@
 
 export interface Timeblock {
-  start: number | Date;
-  end: number | Date;
-  // start: number;
-  // end: number;
+  start: Date;
+  end: Date;
 }
 
 
@@ -18,7 +16,6 @@ export interface BackendReservation {
 }
 
 
-// TODO - define as classes (maybe merge with ItemData, etc) then firestore class creator function
 export interface BackendItem {
   name: string;
   category: string;

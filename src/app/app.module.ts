@@ -67,8 +67,8 @@ const preAuthComponents = [
     FirebaseFunctionsService,
     { provide: AuthService, useExisting: FirebaseAuthService },
     { provide: CallableService, useClass: FirebaseFunctionsService },
-    { provide: DatabaseService, useClass: FirebaseFirestoreService },
-    { provide: ImageStorageService, useClass: FirebaseStorageService },
+    { provide: DatabaseService, useExisting: FirebaseFirestoreService },
+    { provide: ImageStorageService, useExisting: FirebaseStorageService },
   ],
   bootstrap: [AppComponent]
 })

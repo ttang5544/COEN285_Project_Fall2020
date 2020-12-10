@@ -1,6 +1,7 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
 import { ItemData } from 'src/app/@shared/data-models/item.model';
-import { CentralDataService } from '../../../@shared/mock-backend/central-data.service';
+import { CentralDataService } from '../../../@shared/mock-backend/test-data.service';
+import { AppServiceFacade } from '../../service-facade.service';
 
 @Component({
   selector: 'owner-inventory',
@@ -11,14 +12,13 @@ export class OwnerInventory implements OnInit, DoCheck {
 
   items: ItemData[] = [];
 
-  constructor(public cds: CentralDataService) { }
-  // constructor(public itemsService: ItemsMockService, public appRef: ApplicationRef) { }
+  constructor(public sf: AppServiceFacade) { }
 
   ngOnInit() {
-    this.items = [...this.cds.getOwnerItems()];
+    this.items = [...this.sf.getOwnerItems()];
   }
   ngDoCheck() {
-    this.items = [...this.cds.getOwnerItems()];
+    this.items = [...this.sf.getOwnerItems()];
   }
 
 
@@ -29,7 +29,7 @@ export class OwnerInventory implements OnInit, DoCheck {
     let remove = confirm(msger);
 
     if (remove) {
-      this.cds.removeItem(item.itemId);
+      this.sf.removeItem(item.itemId);
     }
 
     //for testing

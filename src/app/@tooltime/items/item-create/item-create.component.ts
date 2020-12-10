@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { categories } from '../../../@shared/data-models/categories.model';
-import { CentralDataService } from '../../../@shared/mock-backend/central-data.service';
+import { CentralDataService } from '../../../@shared/mock-backend/test-data.service';
+import { AppServiceFacade } from '../../service-facade.service';
 
 @Component({
   selector: 'item-create',
@@ -15,8 +16,7 @@ export class ItemCreateComponent {
   url;
   cates = categories;
 
-  constructor(private router: Router, public cds: CentralDataService) { }
-  // constructor(private router: Router, public itemsService: ItemsMockService) { }
+  constructor(private router: Router, public sf: AppServiceFacade) { }
 
   selectFile(event) {
     if (!event.target.files[0] || event.target.files[0].length === 0) {
@@ -42,8 +42,7 @@ export class ItemCreateComponent {
 
   onAddItem(form: NgForm) {
     if (form.invalid) { return; }
-    this.cds.addItem(form.value.cate, form.value.title, form.value.content, this.url, form.value.dayprice);
-    // this.itemsService.addItem(form.value.cate, form.value.title, form.value.content, this.url, form.value.dayprice);
+    this.sf.addItem(form.value.cate, form.value.title, form.value.content, this.url, form.value.dayprice);
     form.resetForm();
     this.router.navigate(['/item-list']);
   }
